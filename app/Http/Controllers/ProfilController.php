@@ -3,38 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+use App\Models\User;
 
 class ProfilController extends Controller
 {
     //
     public function index()
     {
-        return view('login.profil');
+        // $user = user::user();
+        // $user = User::orderBy('id_user', 'asc');
+
+        // return view('login.profil', compact('user'));
+        // $userEmail = session('user_email');
+
+        $user = Auth::user();
+
+        return view('login.profil',compact('user') );
+
     }
-    // public function addImage(Request $request)
-    // {
-    //     $validateData = $request->validate([
-            
-    //     ]);
-    // }
-    // public function edit(Request $request): View
-    // {
-    //     return view('profile.edit', [
-    //         'user' => $request->user(),
-    //     ]);
-    // }
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
 
-   
-    // public function update(ProfileUpdateRequest $request): RedirectResponse
-    // {
-    //     $request->user()->fill($request->validated());
+        $user->name = $request->input('name');
+        $user->alamat = $request->input('alamat');
+        $user->tgl_lahir = $request->input('tgl_lahir');
+        $user->no_hp = $request->input('no_hp');
+        $user->jenis_kelamin = $request->input('jenis_kelamin');
 
-    //     if ($request->user()->isDirty('email')) {
-    //         $request->user()->email_verified_at = null;
-    //     }
+        $user->save();
 
-    //     $request->user()->save();
-
-    //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    // }
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+    }
+    
 }

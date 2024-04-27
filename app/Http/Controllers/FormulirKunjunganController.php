@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FormulirKunjungan;
 use App\Models\User;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 
 
 class FormulirKunjunganController extends Controller
@@ -31,18 +33,18 @@ class FormulirKunjunganController extends Controller
 
     public function store(Request $request)
     {
+        if (auth()->check()) {
         // Validasi data yang dikirimkan dari formulir
         $request->validate([
-            'nama' => 'required|max:50',
-            'asal' => 'required|max:20',
-            'nama_instansi' => 'required|max:50',
+            'nama' => 'required|max:50|alpha',
+            'asal' => 'required|max:20|alpha',
+            'nama_instansi' => 'required|max:50|alpha',
             'nomor_telepon' => 'required|numeric',
             'tanggal' => 'required|date',
-            'tujuan_kunjungan' => 'required|max:50',
+            'tujuan_kunjungan' => 'required|max:50|alpha',
             'jumlah_orang' => 'required|integer',
         ]);
         $user = auth()->user()->id_user;
-
         $kunjungan = new FormulirKunjungan();
         $kunjungan->nama_kunjungan = $request->input('nama');
         $kunjungan->alamat_kunjungan = $request->input('asal');
@@ -50,13 +52,12 @@ class FormulirKunjunganController extends Controller
         $kunjungan->nohp_kunjungan = $request->input('nomor_telepon');
         $kunjungan->tgl_kunjungan = $request->input('tanggal');
         $kunjungan->tujuan_kunjungan = $request->input('tujuan_kunjungan');
-        $kunjungan->jumlahorang_kunjungan = $request->input('jumlah_orang');
+        $kunjungan->jumlah_kunjungan = $request->input('jumlah_orang');
         $kunjungan->id_user = $user;
         $kunjungan->save();
-
         // Redirect pengguna setelah pengguna berhasil ditambahkan
         return redirect()->route('detailpengajuan')->with('success', 'Pengajuan Berhasil Dilakukan');
-    }
+        }}
 
     public function edit(Request $request, $id)
     {

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama_user',50)->nullable(false);
             $table->string('alamat_user',300)->nullable(false);
             $table->string('notelp_user',13)->nullable(false);
-            $table->text('foto_user')->nullable(false);
+            $table->text('foto_user')->nullable(true);
             $table->enum('level_user', ['user', 'admin'])->nullable();
             $table->timestamps();
         });

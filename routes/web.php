@@ -6,7 +6,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KegiatanController;
-use App\Http\Controllers\LoginController;
+// use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\GaleriController;
@@ -56,7 +56,7 @@ Route::get('/', function () {
 
 
 Route::get('/kegiatan', [KegiatanController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+// Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/lokasi', [LokasiController::class, 'index'])->name('lokasi');
 

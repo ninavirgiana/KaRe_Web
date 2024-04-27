@@ -158,17 +158,20 @@
                 <!-- Elemen Formulir Umum -->
                 <form method="POST" action="{{ route('store') }}">
                   @csrf <!-- Tambahkan token CSRF untuk keamanan -->
+
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama_kunjungan') }}" placeholder="Masukkan Nama">
-                      @error('nama')
-                      <div class="invalid-feedback text-danger">
-                        Nama Harus Diisi
-                      </div>
-                      @enderror
+                        <input type="text" pattern="[A-Za-z\s]+" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama_kunjungan') }}" placeholder="Masukkan Nama">
+                        @error('nama')
+                            <div class="invalid-feedback text-danger">
+                                Nama Harus Diisi
+                            </div>
+                        @enderror
                     </div>
-                  </div>
+                </div>
+                
+                
 
                   <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Asal</label>
@@ -192,19 +195,21 @@
                       </div>
                       @enderror
                     </div>
-                  </div>
 
+                  </div>
                   <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Nomor Telepon</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control @error('nomor telepon') is-invalid @enderror" name="nomor telepon" value="{{ old('nohp_kunjungan') }}" placeholder="Masukkan Nomor Telepon" pattern="[0-9]+" title="Harus berisi hanya angka">
+                      <input type="number" pattern="[0-9]{10,12}" class="form-control @error('nomor telepon') is-invalid @enderror" name="nomor telepon" value="{{ old('nohp_kunjungan') }}" placeholder="Masukan Nomor Telepon">
                       @error('nomor_telepon')
                       <div class="invalid-feedback text-danger">
-                        Nomor Telepon Harus Diisi
+                        Nama Telepon Harus Diisi
                       </div>
                       @enderror
                     </div>
                   </div>
+
+                  
 
 
                   <div class="row mb-3">
@@ -245,7 +250,7 @@
                   <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Jumlah Orang</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control @error('jumlah orang') is-invalid @enderror" name="jumlah orang" value="{{ old('jumlahorang_kunjungan') }}" placeholder="Masukkan Jumlah Orang">
+                      <input type="number" class="form-control @error('jumlah orang') is-invalid @enderror" name="jumlah orang" value="{{ old('jumlah_kunjungan') }}" placeholder="Masukkan Jumlah Orang">
                       @error('jumlah_orang')
                       <div class="invalid-feedback text-danger">
                         Jumlah Orang Harus Diisi
@@ -260,7 +265,6 @@
                       <button type="submit" class="btn btn-success mb-2">
                         Kirim <span class="badge bg-white text-success"></span>
                       </button>
-                      <!-- <button type="submit" class="btn btn-primary">Kirim</button> -->
                     </div>
                   </div>
                 </form>

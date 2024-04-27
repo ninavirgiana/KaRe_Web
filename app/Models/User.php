@@ -29,6 +29,7 @@ class User extends Authenticatable
         'notelp_user',
         'foto_user',
         'level_user',
+        // 'id_user',
 
     ];
 

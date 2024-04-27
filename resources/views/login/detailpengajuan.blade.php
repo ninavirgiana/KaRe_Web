@@ -44,7 +44,6 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <i class="bi bi-list toggle-sidebar-btn"></i>
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="{{ asset('assets/img/kare.png')}}" alt="">
         <span class="d-none d-lg-block">Kartoharjo Recycle</span>
@@ -140,12 +139,10 @@
       </nav>
     </div><!-- End Page Title -->
 
-    <div class="btn btn-success mb-2">
       <a href="{{ route('formulirkunjungan') }}" class="btn btn-lg btn-primary btn-lg w-10 mt-2 mb-2">
         <i class="bi bi-plus-lg"></i>
         <span>Tambah</span>
       </a>
-    </div>
 
     
 
@@ -162,6 +159,7 @@
                 <th scope="col">Nama</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Tujuan</th>
+                <th scope="col">Status</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -173,6 +171,7 @@
                   <td>{{ $item->nama_kunjungan }}</td>
                   <td>{{ $item->tgl_kunjungan }}</td>
                   <td>{{ $item->tujuan_kunjungan }}</td>
+                  <td>{{ $item->status_kunjungan }}</td>
                   <td>
                     <a href="{{ url('formulirkunjungan/'.$item->id_kunjungan.'/edit') }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>
                     <a href="{{ url('formulirkunjungan/'.$item->id_kunjungan.'/delete') }}" class="btn btn-danger" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modal-hapus"><i class="bi bi-trash3-fill" onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')"></i></button>
@@ -182,6 +181,7 @@
                 <!-- End PHP Loop -->
             </tbody>
           </table>
+          {{ $data->links() }}
 
           <!-- End Table with stripped rows -->
 

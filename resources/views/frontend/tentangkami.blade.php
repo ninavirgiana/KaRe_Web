@@ -33,7 +33,7 @@
 
                 <div class="row mt-4">
                     <div class="col-12 text-center">
-                        <img src="{{ asset('assets/img/struktur-organisasi.jpeg') }}" width="400" class="img-below-text">
+                        <img src="{{ asset('assets/img/struktur-organisasi.png') }}" width="1100" class="img-below-text">
                     </div>
                 </div>
 

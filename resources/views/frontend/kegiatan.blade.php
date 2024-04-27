@@ -20,12 +20,7 @@
 </div>
 </div>
 <nav>
-  <!-- <div class="container">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Service Details</li>
-          </ol>
-        </div> -->
+ 
 </nav>
 </div><!-- End Breadcrumbs -->
 
@@ -33,17 +28,7 @@
 <section id="service-details" class="service-details">
   <div class="container" data-aos="fade-up">
 
-    <!-- <div class="row gy-4"> -->
-
-    <!-- <div class="col-lg-4">
-        <div class="services-list">
-          <a href="#" class="active">Storage</a>
-          <a href="#">Logistics</a>
-          <a href="#">Cargo</a>
-          <a href="#">Trucking</a>
-          <a href="#">Packaging</a>
-          <a href="#">Warehousing</a>
-        </div> -->
+   
 
 
     <!-- ======= About Us Section ======= -->

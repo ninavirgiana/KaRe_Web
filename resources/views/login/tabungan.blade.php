@@ -2,34 +2,36 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Kartoharjo Recycle</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <title>Kartoharjo Recycle</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="assets/img/kare.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="assets/img/kare.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
+    <!-- =======================================================
   * Template Name: NiceAdmin
   * Updated: Jan 29 2024 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -40,190 +42,191 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <div class="d-flex align-items-center justify-content-between">
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('assets/img/kare.png')}}" alt="">
-        <span class="d-none d-lg-block">Kartoharjo Recycle</span>
-      </a>
-    </div><!-- End Logo -->
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="{{ asset('assets/img/kare.png') }}" alt="">
+                <span class="d-none d-lg-block">Kartoharjo Recycle</span>
+            </a>
+        </div><!-- End Logo -->
 
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
 
-        <li class="nav-item dropdown pe-3">
+                <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('nice-admin/assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Ninuu</span>
-          </a><!-- End Profile Iamge Icon -->
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                        data-bs-toggle="dropdown">
+                        <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile"
+                            class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Ninuu</span>
+                    </a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <!-- <h6>Kevin Anderson</h6>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <!-- <h6>Kevin Anderson</h6>
               <span>Web Designer</span> -->
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
-                <i class="bi bi-person"></i>
-                <span>Akun</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
+                                <i class="bi bi-person"></i>
+                                <span>Akun</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
 
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="login">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Keluar</span>
-              </a>
-            </li>
 
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
 
-      </ul>
-    </nav><!-- End Icons Navigation -->
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="login">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </li>
 
-  </header><!-- End Header -->
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+            </ul>
+        </nav><!-- End Icons Navigation -->
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+    </header><!-- End Header -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('berandalogin') }}">
-          <i class="bi bi-grid"></i>
-          <span>Beranda</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('detailpengajuan') }}">
-          <i class="bi bi-people-fill"></i>
-          <span>Kunjungan</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+        <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('tabungan') }}">
-          <i class="bi bi-wallet2"></i>
-          <span>Tabungan</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-    </ul>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('berandalogin') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>Beranda</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
-  </aside><!-- End Sidebar-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('detailpengajuan') }}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Kunjungan</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-  <main id="main" class="main">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('tabungan') }}">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Tabungan</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+        </ul>
 
-    <div class="pagetitle">
-      <h1>Tabungan</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('tabungan') }}">Tabungan</a></li>
-          <!-- <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li> -->
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+    </aside><!-- End Sidebar-->
 
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
+    <main id="main" class="main">
 
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Total tabungan : Rp. 32.000,00</h4>
+        <div class="pagetitle">
+            <h1>Tabungan</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    {{-- <li class="breadcrumb-item"><a href="{{ route('tabungan', ['id_user' => Auth::user()->id]) }}">Tabungan</a></li> --}}
+                    {{-- <li class="breadcrumb-item"><a href="{{ route('tabungan', ['id' => Auth::user()->id]) }}">Tabungan</a></li> --}}
+                    <li class="breadcrumb-item"><a href="{{ route('tabungan') }}">Tabungan</a></li>
 
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Berat</th>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Jumlah</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>2 Maret 2024</td>
-                    <td>5 kg</td>
-                    <td>sampah plastik 3 kg, kertas 2 kg</td>
-                    <td>15.000</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>29 Februari 2024</td>
-                    <td>1 kg</td>
-                    <td>1 kg sampah kertas</td>
-                    <td>7000</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>20 maret 2024</td>
-                    <td>3 kg</td>
-                    <td>2 kg sampah botol, 1 kg sampah kardus</td>
-                    <td>10.000</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
 
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            @foreach ($tabungan as $item)
+                            @endforeach
+
+                            @if ($tabungan->isNotEmpty())
+                                <h4>Total tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4>
+                            @else
+                                <h4>Belum ada tabungan</h4>
+                            @endif
+
+
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Nomor</th>
+                                        <th>Tanggal</th>
+                                        <th>Berat Sampah</th>
+                                        <th>Keterangan</th>
+                                        <th>Harga</th>
+                                    </tr>
+                                    @foreach ($tabungan as $item)
+                                        <form method="POST" action="{{ route('tabungan', ['id' => $item->id]) }}">
+                                            <tr>
+                                                <td>{{ $item->id_tabungan }}</td>
+                                                <td>{{ $item->tgl_tabungan }}</td>
+                                                <td>{{ $item->beratsampah_tabungan }}</td>
+                                                <td>{{ $item->ketsampah_tabungan }}</td>
+                                                <td>{{ $item->hargasampah_tabungan }}</td>
+                                            </tr>
+                                </thead>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{ $tabungan->links() }}
+
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-          </div>
+        </section>
 
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
         </div>
-      </div>
-    </section>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </footer><!-- End Footer -->
 
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
-  </main><!-- End #main -->
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    <script src="assets/vendor/quill/quill.min.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
 </body>
 

@@ -15,16 +15,20 @@ class FormulirKunjungan extends Model
     protected $fillable = [
         'nama_kunjungan',
         'alamat_kunjungan',
-        'nama_instansi_kunjungan',
-        'no_hp_kunjungan',
-        'tanggal_kunjungan',
+        'namainstansi_kunjungan',
+        'nohp_kunjungan',
+        'tgl_kunjungan',
         'tujuan_kunjungan',
         'status_kunjungan',
         'jumlah_kunjungan',
-        'alasan_status_kunjungan',
+        // 'alasan_status_kunjungan',
+        'id_user',
 
     ];
-    
+    // public function table()
+    // {
+    //     return new Builder($this->table);
+    // }
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');

@@ -11,25 +11,20 @@
     </div>
     <div class="col-lg-5 order-1 order-lg-2" data-aos="zoom-out">
     </div>
+    
   </div>
   </div>
 </section><!-- End Hero Section -->
 
+
+  
+
 <main id="main">
 
-  <!-- ======= Featured Services Section ======= -->
-  <section id="featured-services" class="featured-services">
-    <div class="container">
-
-      <div class="row gy-4">
-
-      </div>
-
-    </div>
-  </section><!-- End Featured Services Section -->
+  
 
   <!-- ======= About Us Section ======= -->
-  <section id="about" class="about pt-0">
+  <section id="features" class="features">
     <div class="container" data-aos="fade-up">
 
       <div class="row gy-4">
@@ -74,7 +69,6 @@
             </div>
             <h3><a href="{{ route('layanansampah') }}" class="stretched-link ">Layanan Pengelolaan Sampah</a></h3>
             <p class="custom-justify">Layanan pengelolaan sampah memiliki 2 sub layanan yaitu layanan penjemputan sampah serta layanan pembelian pupuk.</p>
-
           </div>
         </div><!-- End Card Item -->
 
@@ -118,7 +112,6 @@
     <div class="container">
 
       <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-
         <div class="col-md-5">
           <img src="assets/img/kegiatan2.jpeg" class="img-fluid" alt="">
         </div>
@@ -127,7 +120,6 @@
           <p class="fst-serif custom-justify">
             Pengumpulan sampah adalah proses pengambilan limbah dari rumah tangga, area komersial, dan industri oleh layanan pengelola sampah. Sampah diangkut menggunakan kendaraan khusus ke tempat pemrosesan seperti Tempat Pemrosesan Sampah Terpadu (TPST) atau fasilitas daur ulang. Penduduk mungkin diminta untuk memilah sampah. Di tempat pemrosesan, sampah diolah untuk mengurangi volume, menghasilkan energi, atau didaur ulang. Pematuhan terhadap prosedur pengumpulan yang ditetapkan oleh otoritas setempat penting untuk manajemen limbah yang efektif dan berkelanjutan.
           </p>
-
         </div>
       </div><!-- Features Item -->
 
@@ -143,18 +135,7 @@
         </div>
       </div><!-- Features Item -->
 
-      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-        <div class="col-md-5">
-          <img src="assets/img/kegiatan2.jpeg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7">
-          <h3>Pengelolaan Pupuk</h3>
-          <p class="fst-serif custom-justify">
-            Pengelolaan sampah menjadi pupuk melibatkan pengomposan atau fermentasi bahan organik dari sampah untuk menghasilkan pupuk kompos. Melalui proses ini, sisa-sisa makanan, daun kering, atau limbah pertanian diurai oleh mikroorganisme menjadi humus yang kaya nutrisi. Pupuk kompos yang dihasilkan dapat digunakan sebagai pembenah tanah, mengurangi volume sampah di tempat pembuangan, serta mendukung konsep daur ulang dan pertanian berkelanjutan.</p>
-          <p>
-        </div>
-
-      </div><!-- Features Item -->
+      
 </main><!-- End #main -->
 
 @endsection

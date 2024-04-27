@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class PembelianPupukController extends Controller
@@ -9,6 +10,8 @@ class PembelianPupukController extends Controller
     //
     public function index()
     {
-        return view('frontend.pembelianpupuk');
+        $produk = Produk::orderBy('id_produk', 'asc')->paginate(5);
+        return view('frontend.pembelianpupuk', compact('produk'));
+        
     }
 }

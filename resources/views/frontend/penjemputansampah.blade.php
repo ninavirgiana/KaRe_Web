@@ -10,7 +10,6 @@
 </div>
 </div>
 <nav>
-
     </div><!-- End Breadcrumbs -->
 
     <div class="section-header">
@@ -31,8 +30,8 @@
                         Bingung mau buang sampah ke mana? Tenang, ada solusi tepat untuk Anda! Gunakan layanan penjemputan sampah terpilah dan pengolahan kembali di TPST Kartoharjo. Tim penjemput sampah akan datang ke rumah untuk mengambil sampah yang sudah dipilah. Sampah tersebut kemudian diolah menjadi bahan baku baru dan menghasilkan produk daur ulang berkualitas.</p>
                     <p class="fst-serif custom-justify">
                         Lebih dari itu, Anda juga berkontribusi dalam menjaga kelestarian lingkungan. Yuk, mulai hidup lebih ramah lingkungan dan ciptakan masa depan yang lebih baik! </p>
-                <a class="login-blade" href="https://api.whatsapp.com/send?phone=nomoradmin&text=Halo%20Admin" target="_blank"> <button type="submit" class="btn btn-success mb-2">
-                        Yuk Hubungi Kami di WhatsApp! <span class="badge bg-white text-success"></span>
+                <a class="login-blade" href="https://api.whatsapp.com/send?phone=+6282234506102&text=Halo%20Admin%20Saya%20Ingin%20Memakai%20Layanan%20Penjemputan%20Sampah" target="_blank"> <button type="submit" class="btn btn-success mb-2">
+                    Yuk Hubungi Kami di WhatsApp! <span class="badge bg-white text-success"></span>
                     </button>
                 </a>
             </div>

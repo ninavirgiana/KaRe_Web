@@ -52,60 +52,7 @@
                     </div>
                 </div><!-- End Card Item -->
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Lomba Pengolahan Sampah</a></h3>
-                    </div>
-                </div><!-- End Card Item -->
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Bersih Desa</a></h3>
-                    </div>
-                </div><!-- End Card Item -->
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Kunjungan DLH Kabupaten Nganjuk</a></h3>
-                    </div>
-                </div><!-- End Card Item -->
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Kunjungan Mahasiswa Politeknik Negeri Jember</a></h3>
-                    </div>
-                </div><!-- End Card Item -->
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Kunjungan Masyarakat</a></h3>
-                    </div>
-                </div><!-- End Card Item -->
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Pengolahan Pupuk</a></h3>
-                    </div>
-                </div><!-- End Card Item -->
-
+                
 
 
             </div><!-- End Row -->
