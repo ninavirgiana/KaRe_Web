@@ -82,13 +82,21 @@
 
 
 
-
             <li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="dropdown-item d-flex align-items-center">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Keluar</span>
+                  </button>
+              </form>
+          </li>
+            {{-- <li>
               <a class="dropdown-item d-flex align-items-center" href="login">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Keluar</span>
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Keluar</span>
               </a>
-            </li>
+          </li> --}}
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->

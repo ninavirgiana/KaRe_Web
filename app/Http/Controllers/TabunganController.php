@@ -15,7 +15,7 @@ class TabunganController extends Controller
     public function index()
     {
         // $user = User::find($id_user);
-        $tabungan = Tabungan::orderBy('id_tabungan', 'asc')->paginate(5);
+        $tabungan = Tabungan::orderBy('id_user', 'asc')->simplePaginate(4);
         
         // $tabungan = $user->tabungan()->get();
         return view('login.tabungan', compact('tabungan'));

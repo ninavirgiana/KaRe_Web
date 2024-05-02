@@ -53,4 +53,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function formulir_kunjungan()
+    {
+        return $this->hasMany(FormulirKunjungan::class, 'id_user', 'id_user');
+    }
 }

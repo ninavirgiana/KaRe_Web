@@ -10,6 +10,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        return view('auth.berandalogin');
     }
 }

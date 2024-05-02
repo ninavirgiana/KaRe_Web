@@ -14,7 +14,12 @@ class FormulirKunjunganController extends Controller
 {
     public function index()
     {
+        // $userId = Auth::user()->id;
+        // $kunjungan = FormulirKunjungan::orderBy('id_user', 'asc')->simplePaginate(4);
+
         $kunjungan = FormulirKunjungan::latest()->paginate(5);
+        // $kunjungan = FormulirKunjungan::where('user_id', $userId)->latest()->paginate(5);
+
 
         return view('login.formulirkunjungan', compact('kunjungan'));
     }
@@ -33,7 +38,7 @@ class FormulirKunjunganController extends Controller
 
     public function store(Request $request)
     {
-        if (auth()->check()) {
+        // if (auth()->check()) {
         // Validasi data yang dikirimkan dari formulir
         $request->validate([
             'nama' => 'required|max:50|alpha',
@@ -43,8 +48,10 @@ class FormulirKunjunganController extends Controller
             'tanggal' => 'required|date',
             'tujuan_kunjungan' => 'required|max:50|alpha',
             'jumlah_orang' => 'required|integer',
+            // 'status_kunjungan' => 'required|integer',
+
         ]);
-        $user = auth()->user()->id_user;
+        // $user = auth()->user()->id_user;
         $kunjungan = new FormulirKunjungan();
         $kunjungan->nama_kunjungan = $request->input('nama');
         $kunjungan->alamat_kunjungan = $request->input('asal');
@@ -53,18 +60,23 @@ class FormulirKunjunganController extends Controller
         $kunjungan->tgl_kunjungan = $request->input('tanggal');
         $kunjungan->tujuan_kunjungan = $request->input('tujuan_kunjungan');
         $kunjungan->jumlah_kunjungan = $request->input('jumlah_orang');
-        $kunjungan->id_user = $user;
+        $kunjungan->id_user = 1;
         $kunjungan->save();
         // Redirect pengguna setelah pengguna berhasil ditambahkan
         return redirect()->route('detailpengajuan')->with('success', 'Pengajuan Berhasil Dilakukan');
-        }}
+        }
 
     public function edit(Request $request, $id)
     {
 
         $kunjungan = FormulirKunjungan::find($id);
+        if ($kunjungan) {
+            return view('login.editformulir', compact('kunjungan'));
+        } else {
+            return abort(404); // Tangani ID tidak valid atau data tidak ditemukan
+        }
         // return $pengajuan_kunjungan;
-        return view('login.editformulir', compact('kunjungan'));
+        // return view('login.editformulir', compact('kunjungan'));
     }
     public function update(Request $request, $id)
     {

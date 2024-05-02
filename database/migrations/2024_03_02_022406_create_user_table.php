@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('alamat_user',300)->nullable(false);
             $table->string('notelp_user',13)->nullable(false);
             $table->text('foto_user')->nullable(true);
-            $table->enum('level_user', ['user', 'admin'])->nullable();
+            $table->enum('level_user', ['user', 'admin'])->default('user');
+            // $table->enum('level_user', ['user', 'admin'])->default('user')->nullable(false);
             $table->timestamps();
         });
     }

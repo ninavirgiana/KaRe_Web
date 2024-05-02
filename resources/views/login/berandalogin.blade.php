@@ -88,11 +88,20 @@
 
 
                         <li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Keluar</span>
+                                </button>
+                            </form>
+                        </li>
+                        {{-- <li>
                             <a class="dropdown-item d-flex align-items-center" href="login">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Keluar</span>
                             </a>
-                        </li>
+                        </li> --}}
 
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
@@ -147,65 +156,97 @@
             <div class="row">
                 <div class="col-xxl-4 col-md-4">
                     <div class="card info-card sales-card">
-                        <div class="card-body>
-
-                  <h5 class="card-title"><a href="">Tabungan</a>
-                            </h5>
-
-                            <div class="card-icon roundedd-flex align-items-center justify-content-center">
-                                <i class="bi bi-wallet2"></i>
-                            </div>
-                            <div class="ps-3">
-                                @if ($tabungan->isNotEmpty())
-                                    <h6>Rp. {{ $tabungan->last()->saldoakhir_tabungan }}</h6>
-                                @else
-                                    <h5 class="card-title">Belum ada tabungan</h5>
-                                @endif
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="">Tabungan</a></h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-wallet2"></i>
+                                </div>
+                                <div class="ps-3">
+                                    @if ($tabungan->isNotEmpty())
+                                        <h6>Rp. {{ $tabungan->last()->saldoakhir_tabungan }}</h6>
+                                    @else
+                                        <h5 class="card-title">Belum ada tabungan</h5>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
 
                 <div class="col-xxl-4 col-md-4">
                     <div class="card info-card sales-card">
 
                         <div class="card-body">
                             <h5 class="card-title"><a href="">Sampah</a></h5>
-
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-trash"></i>
                                 </div>
                                 <div class="ps-3">
                                     <h6>145 Kg</h6>
-                                    <!-- <span class="text-muted small pt-2 ps-1">Kilogram</span> -->
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-            <div class="activity-item d-flex">
-                <div class="activite-label">
-                    {{ Carbon::now()->format('d M Y') }}
-                </div>
-                <i class="bi bi-circle-fill activity-badge text-danger align-self-start"></i>
-                <div class="activity-content">
-                    <a href="{{ route('berandalogin') }}" class="fw-bold text-dark">
-                        <h6><strong>Kalender Pengajuan Kunjungan</strong></h6>
-                        <?php
-                        $totalNotifications = DB::table('kunjungan')->where('status', 'diajukan')->count();
-                        ?>
-                        {{ $totalNotifications }} notifikasi
-                    </a>
-                </div>
-            </div>
-
         </section>
+
+        </div>
+        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="card info-card sales-card">
+                        <div class="card-body">
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="basicModal" tabindex="-1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Basic Modal</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                            </div>                              
+                          </div>
+                        </div>
+                      </div><!-- End Basic Modal-->
+
+                            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var calendarEl = document.getElementById('calendar');
+
+                                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                                        initialView: 'dayGridMonth',
+                                        height: '400px',
+                                        // width: '600px'
+                                        aspectRatio: 2,
+                                        dateClick: function (info){
+                                            console.log(info);
+                                            $('#basicModal').modal('show')
+                                        }
+                                        
+                                    });
+
+                                    calendar.render();
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    </section>
+
 
     </main><!-- End #main -->
 

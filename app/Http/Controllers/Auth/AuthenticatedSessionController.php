@@ -51,20 +51,17 @@ class AuthenticatedSessionController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
+        $credentials = $request->only('email_user', 'password_user');
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        // dd($credentials);
+        $user = User::where('email_user', $credentials['email_user'])->first();
+        if ($user && Hash::check($credentials['password_user'], $user->password_user)) {
+            Auth::login($user);
+            return redirect()->route('berandalogin');
+        } else {
+            return redirect()->route('login')->with('error', 'Username atau Password anda salah');
+        }
 
-            return redirect()->intended('/dashboard');
-        }   
-
-        return redirect()->back()->withInput($request->only('email'))->withErrors([
-            'login_failed' => 'Email atau password salah.',
-        ]);
     }
 
     public function logout() {
@@ -78,33 +75,35 @@ class AuthenticatedSessionController extends Controller
 
     public function register_post(Request $request) {
         $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
-            'email' => 'required|email|unique:user,email_user',
-            'notelp' => 'required',
-            'password' => 'required|min:8'
+            'nama_user' => 'required',
+            'alamat_user' => 'required',
+            'email_user' => 'required|email|unique:user,email_user',
+            'notelp_user' => 'required',
+            'password_user' => 'required|min:6',
         ]);
 
-        $data['name'] = $request->nama;
-        $data['alamat'] = $request->alamat;
-        $data['email'] = $request->email;
-        $data['notelp'] = $request->notelp;
-        $data['password'] = Hash::make($request->password);
+        $data['nama_user'] = $request->nama_user;
+        $data['alamat_user'] = $request->alamat_user;
+        $data['email_user'] = $request->email_user;
+        $data['notelp_user'] = $request->notelp_user;
+        $data['password_user'] = Hash::make($request->password_user);
+
 
         User::create($data);
+        
 
-        $login = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        // $login = [
+        //     'email_user' => $request->email_user,
+        //     'password_user' => $request->password_user
+        // ];
 
-        if (Auth::attempt($login)) {
+        if (Auth::attempt($data)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
-        }   
-
-        return redirect()->back()->withInput($request->only('email'))->withErrors([
+            return redirect()->intended('/login');
+        } 
+        
+        return redirect()->back()->withInput($request->only('email_user'))->withErrors([
             'login_failed' => 'Email atau password salah.',
         ]);
     }

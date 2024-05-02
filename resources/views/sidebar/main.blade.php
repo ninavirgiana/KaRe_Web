@@ -85,7 +85,7 @@
 
                     <a class="login-blade" href="{{ route('login') }}">
                         <button type="submit" class="btn btn-success mb-2">
-                            Login <span class="badge bg-white text-success"></span>
+                            Masuk <span class="badge bg-white text-success"></span>
                         </button>
                     </a>
                     </li>

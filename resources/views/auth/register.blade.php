@@ -58,6 +58,7 @@
               <div class="card mb-3">
 
                 <div class="card-body">
+                  
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Buat akun</h5>
@@ -68,32 +69,48 @@
                   @csrf
                     <div class="col-12">
                       <label for="yourName" class="form-label">Nama Lengkap</label>
-                      <input type="text" name="nama" class="form-control" id="yourName" required value="{{ old('nama')}}">
-                      <div class="invalid-feedback">Masukan Nama anda!</div>
+                      <input type="text" class="form-control @error('nama_user') is-invalid @enderror" name="nama_user" value="{{ old('nama_user') }}">
+                      @error('nama_user')
+                      <div class="invalid-feedback">Masukan nama anda!</div>
+                      @enderror
                     </div>
 
                     <div class="col-12">
                       <label for="yourName" class="form-label">Alamat</label>
-                      <input type="text" name="alamat" class="form-control" id="yourName" required value="{{ old('alamat')}}">
-                      <div class="invalid-feedback">Masukan Alamat anda!</div>
+                      <input type="text" class="form-control @error('alamat_user') is-invalid @enderror" name="alamat_user" value="{{ old('alamat_user') }}">
+                      @error('alamat_user')
+                      <div class="invalid-feedback">Masukan alamat anda!</div>
+                      @enderror
                     </div>
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required value="{{ old('email')}}">
-                      <div class="invalid-feedback">Masukan alamat Email yang valid!</div>
+                      <input type="email" class="form-control @error('email_user') is-invalid @enderror" name="email_user" value="{{ old('email_user') }}">
+                      @error('email_user')
+                      <div class="invalid-feedback">Masukan alamat email yang valid!</div>
+                      @enderror
                     </div>
 
                     <div class="col-12">
                       <label for="yournotelp" class="form-label">No.Telp</label>
-                        <input type="text" name="notelp" class="form-control" id="yournotelp" required value="{{ old('notelp')}}">
-                        <div class="invalid-feedback">Masukan No.Telp anda!</div>
+                        <input type="text" class="form-control @error('notelp_user') is-invalid @enderror" name="notelp_user" value="{{ old('notelp_user') }}">
+                        @error('notelp_user')
+                        <div class="invalid-feedback">Masukan no.telp anda!</div>
+                        @enderror
                       </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Kata sandi</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <input type="password" class="form-control @error('password_user') is-invalid @enderror" name="password_user" value="{{ old('password_user') }}">
+                      @error('password_user')
                       <div class="invalid-feedback">Masukan kata sandi!</div>
+                      @enderror
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Konfirmasi kata sandi</label>
+                      <input type="password" name="confirpassword" class="form-control" id="yourPassword" required>
+                      <div class="invalid-feedback">Masukan konfirmasi kata sandi!</div>
                     </div>
 
                     <div class="col-12">

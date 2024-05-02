@@ -44,7 +44,6 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <i class="bi bi-list toggle-sidebar-btn"></i>
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="{{ asset('assets/img/kare.png')}}" alt="">
         <span class="d-none d-lg-block">Kartoharjo Recycle</span>
@@ -83,13 +82,21 @@
 
 
 
-
             <li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="dropdown-item d-flex align-items-center">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Keluar</span>
+                  </button>
+              </form>
+          </li>
+            {{-- <li>
               <a class="dropdown-item d-flex align-items-center" href="login">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Keluar</span>
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Keluar</span>
               </a>
-            </li>
+          </li> --}}
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -158,28 +165,25 @@
                 <!-- Elemen Formulir Umum -->
                 <form method="POST" action="{{ route('store') }}">
                   @csrf <!-- Tambahkan token CSRF untuk keamanan -->
-
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" pattern="[A-Za-z\s]+" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama_kunjungan') }}" placeholder="Masukkan Nama">
-                        @error('nama')
-                            <div class="invalid-feedback text-danger">
-                                Nama Harus Diisi
-                            </div>
-                        @enderror
+                      <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" placeholder="Masukkan Nama">
+                      @error('nama')
+                      <div class="invalid-feedback text-danger">
+                        Nama harus diisi hanya dengan huruf
+                      </div>
+                      @enderror
                     </div>
-                </div>
-                
-                
+                  </div>
 
                   <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Asal</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control @error('asal') is-invalid @enderror" name="asal" value="{{ old('alamat_kunjungan') }}" placeholder="Masukkan Asal">
+                      <input type="text" class="form-control @error('asal') is-invalid @enderror" name="asal" value="{{ old('asal') }}" placeholder="Masukkan Asal">
                       @error('asal')
                       <div class="invalid-feedback text-danger">
-                        Email Harus Diisi
+                        Alamat Harus Diisi
                       </div>
                       @enderror
                     </div>
@@ -188,34 +192,32 @@
                   <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Nama Instansi</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control @error('nama instansi') is-invalid @enderror" name="nama instansi" value="{{ old('namainstansi_kunjungan') }}" placeholder="Masukan Instansi">
+                      <input type="text" class="form-control @error('nama_instansi') is-invalid @enderror" name="nama_instansi" value="{{ old('nama_instansi') }}" placeholder="Masukan Instansi">
                       @error('nama_instansi')
                       <div class="invalid-feedback text-danger">
                         Nama Instansi Harus Diisi
                       </div>
                       @enderror
                     </div>
-
                   </div>
+
                   <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Nomor Telepon</label>
                     <div class="col-sm-10">
-                      <input type="number" pattern="[0-9]{10,12}" class="form-control @error('nomor telepon') is-invalid @enderror" name="nomor telepon" value="{{ old('nohp_kunjungan') }}" placeholder="Masukan Nomor Telepon">
+                      <input type="number" class="form-control @error('nomor_telepon') is-invalid @enderror" name="nomor_telepon" value="{{ old('nomor_telepon') }}" placeholder="Masukkan Nomor Telepon">
                       @error('nomor_telepon')
                       <div class="invalid-feedback text-danger">
-                        Nama Telepon Harus Diisi
+                        Nomor Telepon Harus Diisi
                       </div>
                       @enderror
                     </div>
                   </div>
 
-                  
-
 
                   <div class="row mb-3">
                     <label for="inputDate" class="col-sm-2 col-form-label">Tanggal</label>
                     <div class="col-sm-10">
-                      <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal" value="{{ old('tgl_kunjungan') }}">
+                      <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal" value="{{ old('tanggal') }}">
                       @error('tanggal')
                       <div class="invalid-feedback text-danger">
                         Harap Memilih Tanggal
@@ -227,7 +229,7 @@
                   <div class="row mb-3">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan Kunjungan</label>
                     <div class="col-sm-10">
-                      <textarea class="form-control @error('tujuan kunjungan') is-invalid @enderror" style="height: 100px" name="tujuan kunjungan" value="{{ old('tujuan_kunjungan') }}" placeholder="Masukkan Tujuan Kunjungan"></textarea>
+                      <textarea class="form-control @error('tujuan_kunjungan') is-invalid @enderror" style="height: 100px" name="tujuan_kunjungan" value="{{ old('tujuan_kunjungan') }}" placeholder="Masukkan Tujuan Kunjungan"></textarea>
                       @error('tujuan_kunjungan')
                       <div class="invalid-feedback text-danger">
                         Tujuan Kunjungan Harus Diisi
@@ -250,7 +252,7 @@
                   <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Jumlah Orang</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control @error('jumlah orang') is-invalid @enderror" name="jumlah orang" value="{{ old('jumlah_kunjungan') }}" placeholder="Masukkan Jumlah Orang">
+                      <input type="number" class="form-control @error('jumlah_orang') is-invalid @enderror" name="jumlah_orang" value="{{ old('jumlah_orang') }}" placeholder="Masukkan Jumlah Orang">
                       @error('jumlah_orang')
                       <div class="invalid-feedback text-danger">
                         Jumlah Orang Harus Diisi
@@ -265,6 +267,7 @@
                       <button type="submit" class="btn btn-success mb-2">
                         Kirim <span class="badge bg-white text-success"></span>
                       </button>
+                      <!-- <button type="submit" class="btn btn-primary">Kirim</button> -->
                     </div>
                   </div>
                 </form>

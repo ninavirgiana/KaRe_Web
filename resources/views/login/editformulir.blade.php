@@ -87,14 +87,22 @@
 
 
 
-
-
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Keluar</span>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="dropdown-item d-flex align-items-center">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Keluar</span>
+                  </button>
+              </form>
+          </li>
+
+            {{-- <li>
+              <a class="dropdown-item d-flex align-items-center" href="login">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Keluar</span>
               </a>
-            </li>
+          </li> --}}
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -181,14 +189,14 @@
                   <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Nama Instansi</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="nama instansi kunjungan" value="{{ $kunjungan->nama_instansi_kunjungan }}">
+                      <input type="text" class="form-control" name="nama_instansi" value="{{ $kunjungan->namainstansi_kunjungan }}">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Nomor Telepon</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="nomor telepon" value="{{ $kunjungan->nohp_kunjungan }}">
+                      <input type="text" class="form-control" name="nomor_telepon" value="{{ $kunjungan->nohp_kunjungan }}">
                     </div>
                   </div>
 
@@ -202,7 +210,7 @@
                   <div class="row mb-3">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan Kunjungan</label>
                     <div class="col-sm-10">
-                      <textarea class="form-control" style="height: 100px" name="tujuan kunjungan" value="{{ $kunjungan->tujuan_kunjungan }}"></textarea>
+                      <textarea class="form-control" style="height: 100px" name="tujuan_kunjungan" value="{{ $kunjungan->tujuan_kunjungan }}"></textarea>
                     </div>
                   </div>
 
@@ -219,7 +227,7 @@
                   <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Jumlah Orang</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="jumlah orang" value="{{ $kunjungan->jumlahorang_kunjungan }}">
+                      <input type="number" class="form-control" name="jumlah_orang" value="{{ $kunjungan->jumlah_kunjungan }}">
                     </div>
                   </div>
 
