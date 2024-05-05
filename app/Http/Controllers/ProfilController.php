@@ -30,25 +30,19 @@ public function create()
             'nomor_telepon' => 'required',
             'alamat' => 'required',
             
-            // Sesuaikan aturan validasi dengan kolom-kolom di tabel Profil
-            // Di sini saya mengasumsikan Anda memiliki kolom 'nama' dan 'email'
+            
         ]);
 
-        // Buat instance Profil baru dengan data yang diterima dari form
         $user = new User();
         $user->nama_user = $request->nama_lengkap;
         $user->notelp_user = $request->nomor_telepon;
         $user->alamat_user = $request->alamat;
 
-        // $user->nama_user = $request->input('nama_lengkap');
-        // $user->notelp_user = $request->input('nomor_telepon');
-        // $user->alamat_user = $request->input('alamat');
-        // Setel properti lain sesuai kebutuhan
+        
 
         // Simpan profil baru ke dalam database
         $profil->save();
 
-        // Redirect ke halaman profil yang baru dibuat
         return redirect()->route('profil.show', $profil->id)->with('success', 'Profil berhasil dibuat!');
     }
 
@@ -64,14 +58,12 @@ public function create()
         'nomor_telepon' => 'required',
         'alamat' => 'required'
     ]);
-        // $user = auth()->user(); // Mengambil data user yang sedang login
         $user = User::findOrFail($id); // Mengambil data user yang sedang login
         $user->nama_user = $request->input('nama_lengkap');
         $user->notelp_user = $request->input('nomor_telepon');
         $user->alamat_user = $request->input('alamat');
         $user->save();
 
-        // Redirect pengguna setelah profil berhasil diperbarui
         return redirect()->route('login.profil')->with('success', 'Profil berhasil diperbarui.');
     }
 
@@ -81,7 +73,7 @@ public function create()
     public function updateProfileImage(Request $request)
 {
     $this->validate($request, [
-        'profile_image' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Sesuaikan aturan validasi sesuai kebutuhan
+        'profile_image' => 'required|image|mimes:jpeg,png,jpg|max:2048', 
     ]);
 
    
