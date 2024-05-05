@@ -57,4 +57,26 @@ class User extends Authenticatable
     {
         return $this->hasMany(FormulirKunjungan::class, 'id_user', 'id_user');
     }
+// public function kunjungan()
+// {
+//     return $this->hasOne(Kunjungan::class);
+// }
+    public function kegiatan()
+    {
+        return $this->hasOne(Kegiatan::class, 'id_user', 'id_user');
+    }
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'id_user', 'id_user');
+    }
+    public function verifikasi()
+    {
+        return $this->hasOne(Verifikasi::class, 'id_user', 'id_user');
+    }
+    public function tabungan()
+    {
+        return $this->hasOne(Tabungan::class, 'id_user', 'id_user');
+    }
+
 }

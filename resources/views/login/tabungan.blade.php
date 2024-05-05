@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kartoharjo Recycle</title>
+    <title>Kartoharjo Recycle | Tabungan</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -163,10 +163,13 @@
                             @endforeach
 
                             @if ($tabungan->isNotEmpty())
-                                <h4>Total tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4>
+                                <h4>Total Tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4>
+
+                                {{-- <h4>Total tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4> --}}
                             @else
                                 <h4>Belum ada tabungan</h4>
                             @endif
+
 
 
                             <!-- Table with stripped rows -->
@@ -179,10 +182,12 @@
                                         <th>Keterangan</th>
                                         <th>Harga</th>
                                     </tr>
+                                    @php $no = 1; @endphp <!-- Inisialisasi variabel nomor urutan -->
                                     @foreach ($tabungan as $item)
                                         <form method="POST" action="{{ route('tabungan', ['id' => $item->id]) }}">
                                             <tr>
-                                                <td>{{ $item->id_tabungan }}</td>
+                                                {{-- <td>{{ $item->id_tabungan }}</td> --}}
+                                                <td>{{ $no++ }}</td> <!-- Tampilkan nomor urutan dan tambahkan increment setiap iterasi -->
                                                 <td>{{ $item->tgl_tabungan }}</td>
                                                 <td>{{ $item->beratsampah_tabungan }}</td>
                                                 <td>{{ $item->ketsampah_tabungan }}</td>
@@ -209,14 +214,14 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>TechTonic</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
         </div>
     </footer><!-- End Footer -->
 

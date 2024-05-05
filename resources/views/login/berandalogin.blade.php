@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kartoharjo Recycle</title>
+    <title>Kartoharjo Recycle | Beranda</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -201,51 +201,59 @@
                 <div class="col-12 mt-3">
                     <div class="card info-card sales-card">
                         <div class="card-body">
+                            <h5 class="card-title" style="text-align: center;">Kalender Kunjungan</h5>
                             <div id='calendar'></div>
                         </div>
                     </div>
                     <div class="modal fade" id="basicModal" tabindex="-1">
                         <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">Basic Modal</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Kunjungan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et
+                                    reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur
+                                    sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque
+                                    recusandae quo sit molestias sint dignissimos.
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Tutup</button>
+                                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                </div>
                             </div>
-                            <div class="modal-body">
-                              Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
-                            </div>
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                            </div>                              
-                          </div>
                         </div>
-                      </div><!-- End Basic Modal-->
+                    </div><!-- End Basic Modal-->
 
-                            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    var calendarEl = document.getElementById('calendar');
+                    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+                        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var calendarEl = document.getElementById('calendar');
 
-                                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                                        initialView: 'dayGridMonth',
-                                        height: '400px',
-                                        // width: '600px'
-                                        aspectRatio: 2,
-                                        dateClick: function (info){
-                                            console.log(info);
-                                            $('#basicModal').modal('show')
-                                        }
-                                        
-                                    });
+                            var calendar = new FullCalendar.Calendar(calendarEl, {
+                                initialView: 'dayGridMonth',
+                                height: '400px',
+                                // width: '600px'
+                                aspectRatio: 2,
+                                dateClick: function(info) {
+                                    console.log(info);
+                                    $('#basicModal').modal('show')
+                                }
 
-                                    calendar.render();
-                                });
-                            </script>
-                        </div>
-                    </div>
-                    </section>
+                            });
+
+                            calendar.render();
+                        });
+                    </script>
+                </div>
+            </div>
+            </section>
 
 
     </main><!-- End #main -->
@@ -253,14 +261,16 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>TechTonic</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
+            {{-- Designed by <a>TechTonic</a> --}}
+
         </div>
     </footer><!-- End Footer -->
 

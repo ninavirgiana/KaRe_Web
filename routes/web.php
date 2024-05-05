@@ -18,7 +18,7 @@ use App\Http\Controllers\FormulirKunjunganController;
 use App\Http\Controllers\BerandaLoginController;
 use App\Http\Controllers\DetailPengajuanController;
 use App\Http\Controllers\LayKunjunganController;
-use App\Http\Controllers\DetailFormulirController;
+// use App\Http\Controllers\DetailFormulirController;
 use App\Http\Controllers\CobaErorController;
 // use App\Http\Controllers\FormKunjunganController;
 use App\Http\Controllers\TabunganController;
@@ -67,15 +67,14 @@ Route::get('/home', [HomeController::class, 'index']) ->name('home');
 Route::get('/tentangkami', [TentangKamiController::class, 'index']) ->name('tentangkami');
 
 
-Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
 
-Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
-Route::get('/layanankunjungan', [LayananKunjunganController::class, 'index'])->name('layanankunjungan');
-Route::get('/layanantabungan', [LayananTabunganController::class, 'index'])->name('layanantabungan');
-Route::get('/layanansampah', [LayananSampahController::class, 'index'])->name('layanansampah');
-Route::get('/pembelianpupuk', [PembelianPupukController::class, 'index'])->name('pembelianpupuk');
-Route::get('/penjemputansampah', [PenjemputanSampahController::class, 'index'])->name('penjemputansampah');
-Route::get('/home', [HomeController::class, 'index']) ->name('home');
+Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
+Route::get('/profil/edit', [ProfilController::class, 'edit'])->name('edit');
+Route::put('/profil/{id}', [ProfilController::class, 'update'])->name('update');
+Route::post('/profil', [ProfilController::class, 'store'])->name('store'); // Menambahkan rute untuk metode POST
+
+
+
 
 Route::get('/berandalogin', [BerandaLoginController::class, 'index']) ->name('berandalogin');
 
@@ -89,38 +88,26 @@ Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
 
 
 
-// Route::group(['prefix' => 'user', 'middleware' =>['auth'], 'as' =>'user.'] , function () {
-//     Route::get('/berandalogin', [BerandaLoginController::class, 'index']) ->name('berandalogin');
-//     Route::get('/detailpengajuan', [DetailPengajuanController::class, 'index']) ->name('detailpengajuan');
+    Route::get('/berandalogin', [BerandaLoginController::class, 'index']) ->name('berandalogin');
+    Route::get('/detailpengajuan', [DetailPengajuanController::class, 'index']) ->name('detailpengajuan');
     
-//     Route::get('/formulirkunjungan', [FormulirKunjunganController::class, 'index']) ->name('formulirkunjungan');
-//     Route::get('/create', [FormulirKunjunganController::class, 'create']) ->name('create');
-//     Route::post('/store', [FormulirKunjunganController::class, 'store'])->name('store');
-//     Route::get('formulirkunjungan/{id}/edit', [FormulirKunjunganController::class, 'edit']) ->name('edit');
-//     Route::put('formulirkunjungan/{id}', [FormulirKunjunganController::class, 'update']) ->name('update');
-//     Route::get('/show', [FormulirKunjunganController::class, 'show'])->name('show');
-//     Route::get('formulirkunjungan/{id}/delete', [FormulirKunjunganController::class, 'destroy']) ->name('destroy');
-//     Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
-//     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
-// });
-// CRUD FORMULIR KUNJUNGAN
-// Route::get('/formulirkunjungan', [FormulirKunjunganController::class, 'index']) ->name('formulirkunjungan');
-// Route::get('/create', [FormulirKunjunganController::class, 'create']) ->name('create');
-// Route::post('/store', [FormulirKunjunganController::class, 'store'])->name('store');
-// Route::get('formulirkunjungan/{id}/edit', [FormulirKunjunganController::class, 'edit']) ->name('edit');
-// Route::put('formulirkunjungan/{id}', [FormulirKunjunganController::class, 'update']) ->name('update');
-// Route::get('/show', [FormulirKunjunganController::class, 'show'])->name('show');
+    Route::get('/formulirkunjungan', [FormulirKunjunganController::class, 'index']) ->name('formulirkunjungan');
+    Route::get('/create', [FormulirKunjunganController::class, 'create']) ->name('create');
+    Route::post('/store', [FormulirKunjunganController::class, 'store'])->name('store');
+    Route::get('formulirkunjungan/{id}/edit', [FormulirKunjunganController::class, 'edit']) ->name('edit');
+    Route::put('formulirkunjungan/{id}', [FormulirKunjunganController::class, 'update']) ->name('update');
+    Route::get('/show', [FormulirKunjunganController::class, 'show'])->name('show');
+    Route::get('formulirkunjungan/{id}/delete', [FormulirKunjunganController::class, 'destroy']) ->name('destroy');
+    Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
+    
 
 Route::get('/cobaerror', [CobaErorController::class, 'index'])->name('index');
 
 
 
 
-// Route::get('formulirkunjungan/{id}/delete', [FormulirKunjunganController::class, 'destroy']) ->name('destroy');
+Route::get('formulirkunjungan/{id}/delete', [FormulirKunjunganController::class, 'destroy']) ->name('destroy');
 
-// Route::get('/show', [FormulirKunjunganController::class, 'show'])->name('show');
-
-// Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
 
 
 
@@ -151,6 +138,11 @@ Route::middleware(['auth.user'])->group(function () {
     Route::get('formulirkunjungan/{id}/delete', [FormulirKunjunganController::class, 'destroy']) ->name('destroy');
     Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
+    Route::get('/profil/edit', [ProfilController::class, 'edit'])->name('edit');
+    Route::put('/profil/{id}', [ProfilController::class, 'update'])->name('update');
+    Route::post('/profil', [ProfilController::class, 'store'])->name('store'); // Menambahkan rute untuk metode POST
+
+
 });
 Route::post('/logout',[AuthenticatedSessionController::class, 'logout'])->name('logout');
 

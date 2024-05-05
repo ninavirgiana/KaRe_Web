@@ -7,29 +7,36 @@ use Illuminate\Http\Request;
 use App\Models\FormulirKunjungan;
 use App\Models\User;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+// use App\Http\Controllers\FormulirKunjungan;
 
+
+use Illuminate\Support\Facades\Auth;
 
 
 class FormulirKunjunganController extends Controller
 {
-    public function index()
-    {
-        // $userId = Auth::user()->id;
-        // $kunjungan = FormulirKunjungan::orderBy('id_user', 'asc')->simplePaginate(4);
+    
 
-        $kunjungan = FormulirKunjungan::latest()->paginate(5);
-        // $kunjungan = FormulirKunjungan::where('user_id', $userId)->latest()->paginate(5);
+    public function index(Request $request)
+{
+    // Dapatkan ID pengguna yang sedang login
+    $userId = Auth::id();
 
-
-        return view('login.formulirkunjungan', compact('kunjungan'));
+    // Pastikan ID pengguna yang login ada
+    if (!$userId) {
+        return abort(401); // Unauthorized jika pengguna tidak ada
     }
 
-    public function show()
-    {
-        $data = FormulirKunjungan::all();
-        return view('formulirkunjungan', compact('data'));
-    }
+    // Ambil data tabungan berdasarkan ID pengguna yang sedang login
+    $kunjungan = FormulirKunjungan::where('id_user', $userId)
+        ->orderBy('created_at', 'asc') // Misalnya diurutkan berdasarkan tanggal pembuatan terbaru
+        ->simplePaginate(5); // Paginasi data
 
+    // Tampilkan data tabungan ke view
+    return view('login.formulirkunjungan', compact('kunjungan'));
+}
+
+    
 
     public function create()
     {
@@ -38,20 +45,18 @@ class FormulirKunjunganController extends Controller
 
     public function store(Request $request)
     {
-        // if (auth()->check()) {
-        // Validasi data yang dikirimkan dari formulir
-        $request->validate([
-            'nama' => 'required|max:50|alpha',
-            'asal' => 'required|max:20|alpha',
-            'nama_instansi' => 'required|max:50|alpha',
-            'nomor_telepon' => 'required|numeric',
-            'tanggal' => 'required|date',
-            'tujuan_kunjungan' => 'required|max:50|alpha',
-            'jumlah_orang' => 'required|integer',
-            // 'status_kunjungan' => 'required|integer',
+       
+            $request->validate([
+                'nama' => 'required|max:50|regex:/^[a-zA-Z\s\'\-]+$/',
+                'asal' => 'required|max:20|regex:/^[a-zA-Z\s]+$/',
+                'nama_instansi' => 'required|max:50|regex:/^[a-zA-Z\s]+$/',
+                'nomor_telepon' => 'required|numeric',
+                'tanggal' => 'required|date',
+                'tujuan_kunjungan' => 'required|max:50|regex:/^[a-zA-Z\s\'\-]+$/',
+                'jumlah_orang' => 'required|integer',
 
         ]);
-        // $user = auth()->user()->id_user;
+        $user = auth()->user()->id_user;
         $kunjungan = new FormulirKunjungan();
         $kunjungan->nama_kunjungan = $request->input('nama');
         $kunjungan->alamat_kunjungan = $request->input('asal');
@@ -60,57 +65,45 @@ class FormulirKunjunganController extends Controller
         $kunjungan->tgl_kunjungan = $request->input('tanggal');
         $kunjungan->tujuan_kunjungan = $request->input('tujuan_kunjungan');
         $kunjungan->jumlah_kunjungan = $request->input('jumlah_orang');
-        $kunjungan->id_user = 1;
+        $kunjungan->id_user = auth()->user()->id_user;
         $kunjungan->save();
         // Redirect pengguna setelah pengguna berhasil ditambahkan
         return redirect()->route('detailpengajuan')->with('success', 'Pengajuan Berhasil Dilakukan');
         }
+        public function edit($id)
+{
+    $kunjungan = FormulirKunjungan::findOrFail($id);
+    return view('login.editformulir', compact('kunjungan'));
+}
 
-    public function edit(Request $request, $id)
-    {
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'nama' => 'required',
+        'asal' => 'required',
+        'nama_instansi' => 'required',
+        'nomor_telepon' => 'required',
+        'tanggal' => 'required',
+        'tujuan_kunjungan' => 'required',
+        'jumlah_orang' => 'required',
+    ]);
 
-        $kunjungan = FormulirKunjungan::find($id);
-        if ($kunjungan) {
-            return view('login.editformulir', compact('kunjungan'));
-        } else {
-            return abort(404); // Tangani ID tidak valid atau data tidak ditemukan
-        }
-        // return $pengajuan_kunjungan;
-        // return view('login.editformulir', compact('kunjungan'));
-    }
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'asal' => 'required',
-            'nama_instansi_kunjungan' => 'required',
-            'nomor_telepon' => 'required',
-            'tanggal' => 'required',
-            'tujuan_kunjungan' => 'required',
-            'jumlah_orang' => 'required',
+    $kunjungan = FormulirKunjungan::findOrFail($id);
+    $kunjungan->nama_kunjungan = $request->nama;
+    $kunjungan->alamat_kunjungan = $request->asal;
+    $kunjungan->namainstansi_kunjungan = $request->nama_instansi;
+    $kunjungan->nohp_kunjungan = $request->nomor_telepon;
+    $kunjungan->tgl_kunjungan = $request->tanggal;
+    $kunjungan->tujuan_kunjungan = $request->tujuan_kunjungan;
+    $kunjungan->jumlah_kunjungan = $request->jumlah_orang;
+    $kunjungan->save();
 
-        ]);
-
-        $kunjungan = FormulirKunjungan::findOrFail($id);
-        $kunjungan->update([
+    // Redirect pengguna setelah formulir kunjungan berhasil diperbarui
+    return redirect()->route('detailpengajuan')->with('success', 'Data Berhasil Diedit');
+}
 
 
-            'nama_kunjungan' => $request->nama,
-            'alamat_kunjungan' => $request->asal,
-            'namainstansi_kunjungan' => $request->nama_instansi_kunjungan,
-            'nohp_kunjungan' => $request->nomor_telepon,
-            'tgl_kunjungan' => $request->tanggal,
-            'tujuan_kunjungan' => $request->tujuan_kunjungan,
-            'jumlahorang_kunjungan' => $request->jumlah_orang,
- 
-        ]);
 
-        // Redirect pengguna setelah pengguna berhasil diubah
-
-        return redirect()->back()->with('success', 'Data Berhasil Diedit');
-
-        // return redirect()->route('detailpengajuan')->with('success', 'Data Berhasil Diedit');
-    }
     public function destroy(int $id)
     {
         $kunjungan = FormulirKunjungan::findOrFail($id);

@@ -117,7 +117,6 @@
 
         <div class="section-header">
             <h2>KEGIATAN</h2>
-
         </div>
         <section id="features" class="features">
             <div class="container">

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kartoharjo Recycle- Login</title>
+    <title>Kartoharjo Recycle | Masuk</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -58,11 +58,15 @@
                                 </a>
                             </div><!-- End Logo -->
 
+                            {{-- <div class="pt-0 pb-2">
+                                <a href="{{ route('home')}}" class="bi bi-arrow-left" style="font-size: 25px"></a>
+                            </div> --}}
+
                             <div class="card mb-3">
-
                                 <div class="card-body">
-
-                                    <div class="pt-4 pb-2">
+                                    <div class="pt-0 pb-2">
+                                        <a href="{{ route('home')}}" class="bi bi-arrow-left" style="font-size: 25px"></a>
+                                    {{-- <div class="pt-4 pb-2"> --}}
                                         <h5 class="card-title text-center pb-0 fs-4">Masuk</h5>
                                         <p class="text-center small">Masukan Email & Kata Sandi</p>
                                     </div>
@@ -113,13 +117,17 @@
                                     @endif
                                 </div>
                             </div>
-
+                            <div class="copyright">
+                                &copy; Copyright <strong><span>TechTonic</span></strong>. All Rights Reserved
+                            </div>
                             <div class="credits">
                                 <!-- All the links in the footer should remain intact. -->
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                                {{-- Designed by <a>TechTonic</a> --}}
+                                {{-- &copy; Copyright <strong>TechTonic</strong>. All Rights Reserved --}}
+
                             </div>
 
                         </div>

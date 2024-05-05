@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kartoharjo Recycle</title>
+    <title>Kartoharjo Recycle | Profil</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -57,7 +57,7 @@
             <ul class="d-flex align-items-center">
 
                 <li class="nav-item dropdown pe-3">
-                    {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle"> --}}
+                    <img src="{{ asset('nice-admin/assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
                         <span class="d-none d-md-block dropdown-toggle ps-2">Ninuu</span>
@@ -120,7 +120,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('detailpengajuan') }}">
+                <a class="nav-link collapsed" href="{{ route('detailpengajuan') }}">
                     <i class="bi bi-people-fill"></i>
                     <span>Kunjungan</span>
                 </a>
@@ -173,94 +173,96 @@
                             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                                 <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                             </div>
-                            @foreach ($user as $item)
-                                <form method="POST" action="{{ route('profil', ['id' => $item->id]) }}">
+                                <form method="POST" action="{{ route('profil', ['id' => $user->id]) }}">
+                                    @csrf
+
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
 
-                                        <div class="col-lg-9 col-md-8">{{ $item->nama_user }}</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->nama_user }}</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Alamat</div>
-                                        <div class="col-lg-9 col-md-8">{{ $item->alamat_user }}</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->alamat_user }}</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
-                                        <div class="col-lg-9 col-md-8">{{ $item->email_user }}</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->email_user }}</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Nomor Telepon</div>
-                                        <div class="col-lg-9 col-md-8">{{ $item->notelp_user }}</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->notelp_user }}</div>
                                     </div>
-                                </form>
+                                {{-- </form> --}}
                         </div>
-                        @endforeach
 
                     </div>
 
                     <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                        <!-- Profile Edit Form -->
-                        <form>
+                        
+                           
                             <div class="row mb-3">
-                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Foto
-                                    Profil</label>
+                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Foto Profil</label>
                                 <div class="col-md-8 col-lg-9">
                                     <img src="assets/img/profile-img.jpg" alt="Profile">
                                     <div class="pt-2">
-                                        <a href="#" class="btn btn-primary btn-sm"
-                                            title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                        <a href="#" class="btn btn-danger btn-sm"
-                                            title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
+                                                class="bi bi-upload"></i></a>
+                                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                                                class="bi bi-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
+                    
+                            <!-- Nama lengkap -->
+                            <form action="{{ route('update', ['id' => $user->id_user]) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                               
 
                             <div class="row mb-3">
-                                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama
-                                    Lengkap</label>
+                                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="fullName" type="text" class="form-control" id="fullName"
-                                        value="Kevin Anderson">
+                                    <input name="fullName" type="text" class="form-control" id="fullName" value="{{ $user->nama_user }}">
                                 </div>
                             </div>
-
-
-
+                    
+                            <!-- Email -->
                             <div class="row mb-3">
-                                <label for="company" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="company" type="text" class="form-control" id="company"
-                                        value="Lueilwitz, Wisoky and Leuschke" disabled>
+                                    <input name="email" type="email" class="form-control" id="email" value="{{ $user->email_user }}" readonly>
                                 </div>
                             </div>
-
+                    
+                            <!-- Nomor Telepon -->
                             <div class="row mb-3">
-                                <label for="Job" class="col-md-4 col-lg-3 col-form-label">Nomor
-                                    Telepon</label>
+                                <label for="phoneNumber" class="col-md-4 col-lg-3 col-form-label">Nomor Telepon</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="job" type="text" class="form-control" id="Job"
-                                        value="Web Designer">
+                                    <input name="phoneNumber" type="tel" class="form-control" id="phoneNumber" value="{{ $user->notelp_user }}">
                                 </div>
                             </div>
-
+                    
+                            <!-- Alamat -->
                             <div class="row mb-3">
-                                <label for="Country" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
+                                <label for="address" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="country" type="text" class="form-control" id="Country"
-                                        value="USA">
+                                    <input name="address" type="text" class="form-control" id="address" value="{{ $user->alamat_user }}">
                                 </div>
                             </div>
-
-
+                            <div class="col-sm-10">
+                                <input type="hidden" name="id" value="{{ $user->id_user }}">
+                            </div>
+                    
+                            <!-- Tombol Simpan -->
                             <div class="btn-hj">
                                 <button type="submit" class="btn btn-success mb-2">
                                     Simpan Perubahan <span class="badge bg-white text-success"></span>
                                 </button>
                             </div>
                         </form><!-- End Profile Edit Form -->
-
                     </div>
+                    
 
 
 
@@ -269,8 +271,8 @@
                         <form>
 
                             <div class="row mb-3">
-                                <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Ubah Kata
-                                    Sandi</label>
+                                <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Kata
+                                    Sandi Lama</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="password" type="password" class="form-control"
                                         id="currentPassword">
@@ -286,7 +288,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Konfirmasi
+                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Masukkan
                                     Kata Sandi Baru</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="renewpassword" type="password" class="form-control"
@@ -318,14 +320,14 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>TechTonic</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
         </div>
     </footer><!-- End Footer -->
 

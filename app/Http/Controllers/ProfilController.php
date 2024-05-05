@@ -11,29 +11,73 @@ class ProfilController extends Controller
 {
     //
     public function index()
+{
+    $user = auth()->user(); // Mengambil data user yang sedang login
+
+    return view('login.profil', compact('user'));
+}
+public function create()
     {
-        // $user = user::user();
-        $user = User::orderBy('id_user', 'asc');
-        return view('login.profil', compact('user'));
-        
-        // $user = User::orderBy('id_user', 'asc');
-        // return view('login.profil',compact('user') );
-
+        return view('login.profil');
     }
-    // public function update(Request $request, $id)
-    // {
-    //     $user = User::findOrFail($id);
 
-    //     $user->name = $request->input('name');
-    //     $user->alamat = $request->input('alamat');
-    //     $user->tgl_lahir = $request->input('tgl_lahir');
-    //     $user->no_hp = $request->input('no_hp');
-    //     $user->jenis_kelamin = $request->input('jenis_kelamin');
+    // Metode untuk menyimpan profil baru
+    public function store(Request $request)
+    {
+        // Validasi data yang diterima dari form
+        $request->validate([
+            'nama_lengkap' => 'required|string',
+            'nomor_telepon' => 'required',
+            'alamat' => 'required',
+            
+            // Sesuaikan aturan validasi dengan kolom-kolom di tabel Profil
+            // Di sini saya mengasumsikan Anda memiliki kolom 'nama' dan 'email'
+        ]);
 
-    //     $user->save();
+        // Buat instance Profil baru dengan data yang diterima dari form
+        $user = new User();
+        $user->nama_user = $request->nama_lengkap;
+        $user->notelp_user = $request->nomor_telepon;
+        $user->alamat_user = $request->alamat;
 
-    //     return redirect()->back()->with('success', 'Profil berhasil diperbarui');
-    // }
+        // $user->nama_user = $request->input('nama_lengkap');
+        // $user->notelp_user = $request->input('nomor_telepon');
+        // $user->alamat_user = $request->input('alamat');
+        // Setel properti lain sesuai kebutuhan
+
+        // Simpan profil baru ke dalam database
+        $profil->save();
+
+        // Redirect ke halaman profil yang baru dibuat
+        return redirect()->route('profil.show', $profil->id)->with('success', 'Profil berhasil dibuat!');
+    }
+
+    public function edit(){
+        $user = auth()->user(); // Mengambil data user yang sedang login
+
+    return view('login.profil', compact('user'));
+}
+    
+    public function update(){
+        $request->validate([
+        'nama_lengkap' => 'required|',
+        'nomor_telepon' => 'required',
+        'alamat' => 'required'
+    ]);
+        // $user = auth()->user(); // Mengambil data user yang sedang login
+        $user = User::findOrFail($id); // Mengambil data user yang sedang login
+        $user->nama_user = $request->input('nama_lengkap');
+        $user->notelp_user = $request->input('nomor_telepon');
+        $user->alamat_user = $request->input('alamat');
+        $user->save();
+
+        // Redirect pengguna setelah profil berhasil diperbarui
+        return redirect()->route('login.profil')->with('success', 'Profil berhasil diperbarui.');
+    }
+
+
+
+
     public function updateProfileImage(Request $request)
 {
     $this->validate($request, [
