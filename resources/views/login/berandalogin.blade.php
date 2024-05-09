@@ -56,54 +56,57 @@
             <ul class="d-flex align-items-center">
 
                 <li class="nav-item dropdown pe-3">
-
+                    {{-- @foreach ($user as $item) --}}
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile"
-                            class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">Ninuu</span>
-                    </a><!-- End Profile Iamge Icon -->
+                        <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle">
+                        {{-- <img src="{{ url('foto_profil/' . $user->foto_user) }}" class="d-block w-100"
+                                        alt="Foto Profil Pengguna"> --}}
+                        
+                        <span class="d-none d-md-block dropdown-toggle ps-2"
+                            href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <!-- <h6>Kevin Anderson</h6>
+                        {{-- @endforeach --}}
+
+
+
+
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <!-- <h6>Kevin Anderson</h6>
               <span>Web Designer</span> -->
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
-                                <i class="bi bi-person"></i>
-                                <span>Akun</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
+                                    <i class="bi bi-person"></i>
+                                    <span>Akun</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
 
 
-                        <li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item d-flex align-items-center">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span>Keluar</span>
-                                </button>
-                            </form>
-                        </li>
-                        {{-- <li>
-                            <a class="dropdown-item d-flex align-items-center" href="login">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Keluar</span>
-                            </a>
-                        </li> --}}
 
-                    </ul><!-- End Profile Dropdown Items -->
+
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item d-flex align-items-center">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        <span>Keluar</span>
+                                    </button>
+                                </form>
+                            </li>
+                            
+
+                        </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
 
             </ul>
@@ -174,22 +177,9 @@
                     </div>
                 </div>
 
-                <div class="col-xxl-4 col-md-4">
-                    <div class="card info-card sales-card">
-
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Sampah</a></h5>
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-trash"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>145 Kg</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+            </div>
+            </div>
             </div>
         </section>
 
@@ -206,27 +196,53 @@
                         </div>
                     </div>
                     <div class="modal fade" id="basicModal" tabindex="-1">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-sm-4">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Kunjungan</h5>
+                                    <h5 class="modal-title">Detail Kunjungan</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et
-                                    reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur
-                                    sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque
-                                    recusandae quo sit molestias sint dignissimos.
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label for="nama">Nama Pengunjung</label>
+                                                <input type="text" class="form-control" id="nama"
+                                                    name="nama" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label for="tujuan_kunjungan">Nama Instansi</label>
+                                                <input type="text" class="form-control" id="tujuan_kunjungan"
+                                                    name="tujuan_kunjungan" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label for="tujuan_kunjungan">Tujuan Kunjungan</label>
+                                                <input type="text" class="form-control" id="tujuan_kunjungan"
+                                                    name="tujuan_kunjungan" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label for="tanggal_kunjungan">Tanggal Kunjungan</label>
+                                                <input type="text" class="form-control" id="tanggal_kunjungan"
+                                                    name="tanggal_kunjungan" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Tutup</button>
-                                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                 </div>
                             </div>
                         </div>
                     </div><!-- End Basic Modal-->
+
 
                     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"

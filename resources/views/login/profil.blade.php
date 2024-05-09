@@ -1,3 +1,7 @@
+<?php
+// echo route('update.profile', ['id' => $user->id_user]);
+// exit();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,10 +61,16 @@
             <ul class="d-flex align-items-center">
 
                 <li class="nav-item dropdown pe-3">
-                    <img src="{{ asset('nice-admin/assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
+
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Ninuu</span>
+                        {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile" --}}
+                        {{-- <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle"> --}}
+                        <img src="{{ url('foto_profil/' . $user->foto_user) }}" class="d-block w-100"
+                                        alt="Foto Profil Pengguna">
+                        <span class="d-none d-md-block dropdown-toggle ps-2"
+                            href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
+                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ $user->nama_user }}</span> --}}
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -98,7 +108,7 @@
                         </li> --}}
 
 
-                        
+
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
 
@@ -171,136 +181,146 @@
                     <div class="tab-content pt-2">
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                                <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                                {{-- <img src="{{ asset('/assets/img/' . $user->foto_user) }}" alt="Profile" class="rounded-circle"> --}}
+                                @if ($user->foto_user)
+                                    <img src="{{ url('foto_profil/' . $user->foto_user) }}" class="d-block w-100"
+                                        alt="Foto Profil Pengguna">
+                                @else
+                                    <img src="{{ url('foto_profil/default.jpg') }}" class="d-block w-100"
+                                        alt="Default Foto Profil">
+                                @endif
+
                             </div>
-                                <form method="POST" action="{{ route('profil', ['id' => $user->id]) }}">
-                                    @csrf
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
 
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
-
-                                        <div class="col-lg-9 col-md-8">{{ $user->nama_user }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Alamat</div>
-                                        <div class="col-lg-9 col-md-8">{{ $user->alamat_user }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Email</div>
-                                        <div class="col-lg-9 col-md-8">{{ $user->email_user }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Nomor Telepon</div>
-                                        <div class="col-lg-9 col-md-8">{{ $user->notelp_user }}</div>
-                                    </div>
-                                {{-- </form> --}}
+                                    <div class="col-lg-9 col-md-8">{{ $user->nama_user }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Alamat</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->alamat_user }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Email</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->email_user }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Nomor Telepon</div>
+                                    <div class="col-lg-9 col-md-8">{{ $user->notelp_user }}</div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
 
                     <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                        
-                           
+                        <!-- start Profile Edit Form -->
+                        <form action="{{ route('update.profile', ['id' => $user->id_user]) }}" method="POST"
+                            enctype="multipart/form-data">
+                            {{-- @method('PUT') --}}
+                            @csrf
+                            @method('PUT')
+
                             <div class="row mb-3">
                                 <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Foto Profil</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <img src="assets/img/profile-img.jpg" alt="Profile">
+                                    <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                        name="foto_user" accept="image/*">
                                     <div class="pt-2">
-                                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
-                                                class="bi bi-upload"></i></a>
-                                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                                                class="bi bi-trash"></i></a>
+                                        @error('foto')
+                                            <div class="invalid-feedback text-danger">
+                                                Foto harus diisi <!-- Menampilkan pesan kesalahan validasi -->
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
-                    
-                            <!-- Nama lengkap -->
-                            <form action="{{ route('update', ['id' => $user->id_user]) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                               
 
                             <div class="row mb-3">
                                 <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="fullName" type="text" class="form-control" id="fullName" value="{{ $user->nama_user }}">
+                                    <input name="nama_user" type="text" class="form-control" id="fullName"
+                                        value="{{ $user->nama_user }}">
                                 </div>
                             </div>
-                    
-                            <!-- Email -->
+
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="email" type="email" class="form-control" id="email" value="{{ $user->email_user }}" readonly>
+                                    <input name="email_user" type="email" class="form-control" id="email"
+                                        value="{{ $user->email_user }}" readonly>
                                 </div>
                             </div>
-                    
-                            <!-- Nomor Telepon -->
+
                             <div class="row mb-3">
-                                <label for="phoneNumber" class="col-md-4 col-lg-3 col-form-label">Nomor Telepon</label>
+                                <label for="phoneNumber" class="col-md-4 col-lg-3 col-form-label">Nomor
+                                    Telepon</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="phoneNumber" type="tel" class="form-control" id="phoneNumber" value="{{ $user->notelp_user }}">
+                                    <input name="notelp_user" type="tel" class="form-control" id="phoneNumber"
+                                        value="{{ $user->notelp_user }}">
                                 </div>
                             </div>
-                    
-                            <!-- Alamat -->
+
                             <div class="row mb-3">
                                 <label for="address" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="address" type="text" class="form-control" id="address" value="{{ $user->alamat_user }}">
+                                    <input name="alamat_user" type="text" class="form-control" id="address"
+                                        value="{{ $user->alamat_user }}">
                                 </div>
                             </div>
+
                             <div class="col-sm-10">
                                 <input type="hidden" name="id" value="{{ $user->id_user }}">
                             </div>
-                    
-                            <!-- Tombol Simpan -->
+
                             <div class="btn-hj">
                                 <button type="submit" class="btn btn-success mb-2">
                                     Simpan Perubahan <span class="badge bg-white text-success"></span>
                                 </button>
                             </div>
-                        </form><!-- End Profile Edit Form -->
+                        </form>
+                        <!-- End Profile Edit Form -->
                     </div>
-                    
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
 
 
 
                     <div class="tab-pane fade pt-3" id="profile-change-password">
-                        <!-- Change Password Form -->
-                        <form>
+                        <form action="{{ route('gantipassword', ['id' => $user->id_user]) }}" method="POST" enctype="multipart/form-data">
+                            @csrf <!-- Token CSRF untuk keamanan -->
+                            @method('POST')
 
                             <div class="row mb-3">
-                                <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Kata
-                                    Sandi Lama</label>
+                                <label for="passwordsekarang" class="col-md-4 col-lg-3 col-form-label">Kata Sandi Lama</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="password" type="password" class="form-control"
-                                        id="currentPassword">
+                                    <input name="passwordsekarang" type="password" class="form-control"
+                                        id="passwordsekarang">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Kata Sandi
-                                    Baru</label>
+                                <label for="passwordbaru" class="col-md-4 col-lg-3 col-form-label">Kata Sandi Baru</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                    <input name="passwordbaru" type="password" class="form-control" id="passwordbaru">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Masukkan
-                                    Kata Sandi Baru</label>
+                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Konfirmasi Kata Sandi</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="renewpassword" type="password" class="form-control"
-                                        id="renewPassword">
+                                    <input name="konfirmasipassword" type="password" class="form-control"
+                                        id="konfirmasipassword">
                                 </div>
                             </div>
 
-
-                            <div class="btn-hj">
-                                <button type="submit" class="btn btn-success mb-2">
-                                    Simpan <span class="badge bg-white text-success"></span>
-                                </button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                             </div>
                         </form><!-- End Change Password Form -->
 
@@ -345,7 +365,7 @@
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/j1s/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 

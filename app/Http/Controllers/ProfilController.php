@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\Hash;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
@@ -16,85 +19,82 @@ class ProfilController extends Controller
 
     return view('login.profil', compact('user'));
 }
-public function create()
+    public function create()
     {
         return view('login.profil');
     }
 
-    // Metode untuk menyimpan profil baru
-    public function store(Request $request)
+    
+    public function show($id)
     {
-        // Validasi data yang diterima dari form
+        // Mengambil data profil dari database berdasarkan ID
+        $user = User::findOrFail($id);
+        
+        // Mengirimkan data profil ke view untuk ditampilkan
+        return view('login.profil', compact('user'));
+    }
+    
+    public function update(Request $request, $id)
+{
+    try {
         $request->validate([
-            'nama_lengkap' => 'required|string',
-            'nomor_telepon' => 'required',
-            'alamat' => 'required',
-            
-            // Sesuaikan aturan validasi dengan kolom-kolom di tabel Profil
-            // Di sini saya mengasumsikan Anda memiliki kolom 'nama' dan 'email'
+            'nama_user' => 'required',
+            'notelp_user' => 'required',
+            'email_user' => 'required',
+            'alamat_user' => 'required',
+            'foto_user' => 'image|mimes:jpeg,png,jpg,gif|max:2048' 
         ]);
 
-        // Buat instance Profil baru dengan data yang diterima dari form
-        $user = new User();
-        $user->nama_user = $request->nama_lengkap;
-        $user->notelp_user = $request->nomor_telepon;
-        $user->alamat_user = $request->alamat;
+        $user = User::findOrFail($id);
+        $user->nama_user = $request->input('nama_user');
+        $user->notelp_user = $request->input('notelp_user');
+        $user->alamat_user = $request->input('alamat_user');
+        $user->email_user = $request->input('email_user');
+        
+        if ($request->hasFile('foto_user')) { 
+            $foto = $request->file('foto_user');
+            $nama_foto = $user->id_user . '.' . $foto->getClientOriginalExtension();
+            $tujuan_upload = 'foto_profil';
+            $foto->move($tujuan_upload, $nama_foto);
+            $user->foto_user = $nama_foto; 
+        }
 
-        // $user->nama_user = $request->input('nama_lengkap');
-        // $user->notelp_user = $request->input('nomor_telepon');
-        // $user->alamat_user = $request->input('alamat');
-        // Setel properti lain sesuai kebutuhan
-
-        // Simpan profil baru ke dalam database
-        $profil->save();
-
-        // Redirect ke halaman profil yang baru dibuat
-        return redirect()->route('profil.show', $profil->id)->with('success', 'Profil berhasil dibuat!');
-    }
-
-    public function edit(){
-        $user = auth()->user(); // Mengambil data user yang sedang login
-
-    return view('login.profil', compact('user'));
-}
-    
-    public function update(){
-        $request->validate([
-        'nama_lengkap' => 'required|',
-        'nomor_telepon' => 'required',
-        'alamat' => 'required'
-    ]);
-        // $user = auth()->user(); // Mengambil data user yang sedang login
-        $user = User::findOrFail($id); // Mengambil data user yang sedang login
-        $user->nama_user = $request->input('nama_lengkap');
-        $user->notelp_user = $request->input('nomor_telepon');
-        $user->alamat_user = $request->input('alamat');
         $user->save();
 
-        // Redirect pengguna setelah profil berhasil diperbarui
         return redirect()->route('login.profil')->with('success', 'Profil berhasil diperbarui.');
+    } catch (\Exception $e) {
+        return back()->withInput()->withErrors(['error' => 'Gagal memperbarui profil. Silakan coba lagi.']);
+    }
+}
+public function gantipassword(Request $request)
+    {
+        $request->validate([
+            'passwordsekarang' => 'required',
+            'passwordbaru' => [
+                'required',
+                'regex:/^\S*$/u', 
+            ],
+        ], [
+            'passwordbaru.regex' => 'Password baru tidak boleh mengandung spasi.',
+        ]);
+        $user = Auth::User();
+
+        if (Hash::check($request->passwordsekarang, $user->password_user)) {
+            $user->password_user = Hash::make($request->konfirmasipassword);
+            $user->save();
+
+            return redirect()->back()->with('success', 'Password berhasil diperbarui');
+        } else {
+            return redirect()->back()->with('error', 'Password lama yang dimasukkan salah');
+        }
     }
 
 
-
-
-    public function updateProfileImage(Request $request)
-{
-    $this->validate($request, [
-        'profile_image' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Sesuaikan aturan validasi sesuai kebutuhan
-    ]);
-
-   
-
-    return back()->with('success', 'Foto profil berhasil diperbarui!');
-}
-
-public function removeProfileImage(Request $request)
-{
     
 
-    return back()->with('success', 'Foto profil berhasil dihapus!');
-}
 
-    
+
+
+
+//     
 }

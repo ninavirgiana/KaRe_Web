@@ -52,18 +52,25 @@
                             <th>Nama Produk</th>
                             <th>Deskripsi Produk</th>
                             <th>Harga Produk</th>
+                            <th>Stok Produk</th>
                             <th>Foto Produk</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php $no = 1; @endphp <!-- Inisialisasi variabel nomor urutan -->
                         @foreach ($produk as $item)
                             <form method="POST" action="{{ route('pembelianpupuk', ['id' => $item->id]) }}">
                                 <tr>
-                                    <td>{{ $item->id_produk }}</td>
+                                    {{-- <td>{{ $item->id_produk }}</td> --}}
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $item->nama_produk }}</td>
                                     <td>{{ $item->deskripsi_produk }}</td>
                                     <td>{{ $item->harga_produk }}</td>
-                                    <td>{{ $item->foto_produk }}</td>
+                                    <td>{{ $item->stok_produk }}</td>
+                                    <td><img width="150px" src="{{ url('/images/produk/'.$item->foto_produk) }}"></td>
+
+                                    {{-- <img width="100px" src="{{ url('/images/produk/'.$item->foto_produk) }}"> --}}
+                                    {{-- <td>{{ $item->foto_produk }}</td> --}}
                                 </tr>
                             </form>
                         @endforeach

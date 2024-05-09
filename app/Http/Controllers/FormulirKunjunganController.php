@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FormulirKunjungan;
+// use App\Models\FormulirKunjungan;
+
 use App\Models\User;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // use App\Http\Controllers\FormulirKunjungan;
@@ -24,24 +26,32 @@ class FormulirKunjunganController extends Controller
 
     // Pastikan ID pengguna yang login ada
     if (!$userId) {
-        return abort(401); // Unauthorized jika pengguna tidak ada
+        return abort(401); 
     }
 
     // Ambil data tabungan berdasarkan ID pengguna yang sedang login
     $kunjungan = FormulirKunjungan::where('id_user', $userId)
-        ->orderBy('created_at', 'asc') // Misalnya diurutkan berdasarkan tanggal pembuatan terbaru
-        ->simplePaginate(5); // Paginasi data
+        ->orderBy('created_at', 'asc') 
+        ->simplePaginate(5); 
 
-    // Tampilkan data tabungan ke view
+    
     return view('login.formulirkunjungan', compact('kunjungan'));
 }
 
     
+public function create()
+{
+    // Mendapatkan data tanggal yang sudah dibooking
+    $bookedDates = FormulirKunjungan::getBookedDates();
 
-    public function create()
-    {
-        return view('login.formulirkunjungan');
-    }
+    
+    return view('login.formulirkunjungan', ['bookedDates' => $bookedDates]);
+}
+
+    // public function create()
+    // {
+    //     return view('login.formulirkunjungan');
+    // }
 
     public function store(Request $request)
     {
@@ -98,7 +108,6 @@ public function update(Request $request, $id)
     $kunjungan->jumlah_kunjungan = $request->jumlah_orang;
     $kunjungan->save();
 
-    // Redirect pengguna setelah formulir kunjungan berhasil diperbarui
     return redirect()->route('detailpengajuan')->with('success', 'Data Berhasil Diedit');
 }
 

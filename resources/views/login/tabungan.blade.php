@@ -51,17 +51,27 @@
                 <span class="d-none d-lg-block">Kartoharjo Recycle</span>
             </a>
         </div><!-- End Logo -->
+        {{-- <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+    
+        </div><!-- End Search Bar --> --}}
+
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile"
-                            class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Ninuu</span>
+                        {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile" --}}
+                        <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2"
+                            href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
+                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ $user->nama_user }}</span> --}}
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -156,12 +166,11 @@
         <section class="section">
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="card">
                         <div class="card-body">
+
                             @foreach ($tabungan as $item)
                             @endforeach
-
                             @if ($tabungan->isNotEmpty())
                                 <h4>Total Tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4>
 
@@ -169,42 +178,59 @@
                             @else
                                 <h4>Belum ada tabungan</h4>
                             @endif
-
-
-
-                            <!-- Table with stripped rows -->
-                            <table class="table datatable">
-                                <thead>
-                                    <tr>
-                                        <th>Nomor</th>
-                                        <th>Tanggal</th>
-                                        <th>Berat Sampah</th>
-                                        <th>Keterangan</th>
-                                        <th>Harga</th>
-                                    </tr>
-                                    @php $no = 1; @endphp <!-- Inisialisasi variabel nomor urutan -->
-                                    @foreach ($tabungan as $item)
-                                        <form method="POST" action="{{ route('tabungan', ['id' => $item->id]) }}">
-                                            <tr>
-                                                {{-- <td>{{ $item->id_tabungan }}</td> --}}
-                                                <td>{{ $no++ }}</td> <!-- Tampilkan nomor urutan dan tambahkan increment setiap iterasi -->
-                                                <td>{{ $item->tgl_tabungan }}</td>
-                                                <td>{{ $item->beratsampah_tabungan }}</td>
-                                                <td>{{ $item->ketsampah_tabungan }}</td>
-                                                <td>{{ $item->hargasampah_tabungan }}</td>
-                                            </tr>
-                                </thead>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            {{ $tabungan->links() }}
-
-                            <!-- End Table with stripped rows -->
-
+                            <div class="search-bar">
+                                {{-- <form class="search-form d-flex align-items-center" method="POST" action="#"> --}}
+                                <form action="{{ route('tabungan') }}" method="GET">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input type="text" name="search" class="form-control float-right"
+                                            placeholder="Search" title="Enter search keyword" value="{{ $request->get('search') }}">
+                                        <button type="submit" title="Search">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                            </div><!-- End Search Bar -->
+                            
                         </div>
-                    </div>
 
+
+
+
+
+
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>Nomor</th>
+                                    <th>Tanggal</th>
+                                    <th>Berat Sampah</th>
+                                    <th>Keterangan</th>
+                                    <th>Harga</th>
+                                </tr>
+                                @php $no = 1; @endphp 
+                                @foreach ($tabungan as $item)
+                                    {{-- <form method="POST" action="{{ route('tabungan', ['id' => $item->id]) }}"> --}}
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        {{-- <td>{{ date('d F Y', strtotime($item->tgl_tabungan)) }}</td> --}}
+                                        <td>{{ $item->tgl_tabungan }}</td>
+                                        <td>{{ $item->beratsampah_tabungan }}</td>
+                                        <td>{{ $item->ketsampah_tabungan }}</td>
+                                        <td>{{ $item->hargasampah_tabungan }}</td>
+                                    </tr>
+                                @endforeach
+
+                                {{-- </thead> --}}
+                                </tbody>
+                        </table>
+                        {{ $tabungan->links() }}
+
+                        <!-- End Table with stripped rows -->
+
+                    </div>
                 </div>
+
+            </div>
             </div>
         </section>
 
@@ -240,6 +266,8 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
+
 
 </body>
 

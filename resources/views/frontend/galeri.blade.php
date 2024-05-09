@@ -23,66 +23,22 @@
                 </div>
 
                 <div class="row gy-4">
+                    @foreach ($kegiatan as $item)
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="card">
+                                <div class="card-img">
+                                    {{-- <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid"> --}}
+                                    <img width="370px" src="{{ url('/images/kegiatan/'.$item->foto_kegiatan) }}">
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
+                                    {{-- <img src="{{ asset($item->foto) }}" alt="{{ $item->foto_kegiatan }}" class="img-fluid"> --}}
+                                </div>
+                                <h3><a>{{ $item->nama_kegiatan }}</a></h3>
                             </div>
-                            <h3><a  class="stretched-link">Kegiatan Daur Ulang</a></h3>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                            </div>
-                            <h3><a  class="stretched-link">Lomba Kebersihan Daerah</a></h3>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                            </div>
-                            <h3><a  class="stretched-link">Kunjungan Universitas Airlangga</a>
-                            </h3>
-                        </div>
-                    </div><!-- End Card Item -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                            </div>
-                            <h3><a  class="stretched-link">Kegiatan Daur Ulang</a></h3>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                            </div>
-                            <h3><a  class="stretched-link">Lomba Kebersihan Daerah</a></h3>
-                        </div>
-                    </div><!-- End Card Item -->
-
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="assets/img/kegiatan3.jpeg" alt="" class="img-fluid">
-                            </div>
-                            <h3><a  class="stretched-link">Kunjungan Universitas Airlangga</a>
-                            </h3>
-                        </div>
-                    </div><!-- End Card Item -->
-
-
-
-
+                        </div><!-- End Card Item -->
+                    @endforeach
                 </div><!-- End Row -->
             </div><!-- End Container -->
+            {{ $kegiatan->links() }}
+
         </section><!-- End Services Section -->
     @endsection

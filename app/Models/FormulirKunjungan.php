@@ -21,17 +21,18 @@ class FormulirKunjungan extends Model
         'tujuan_kunjungan',
         'status_kunjungan',
         'jumlah_kunjungan',
-        // 'alasan_status_kunjungan',
+        // 'alasanstatus_kunjungan',
         'id_user',
 
     ];
-    // public function table()
-    // {
-    //     return new Builder($this->table);
-    // }
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+    public static function getBookedDates()
+    {
+        return FormulirKunjungan::where('status_kunjungan', 'diterima')->pluck('tgl_kunjungan')->toArray();
     }
     
 }

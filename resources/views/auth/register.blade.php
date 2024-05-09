@@ -93,7 +93,8 @@
 
                     <div class="col-12">
                       <label for="yournotelp" class="form-label">No.Telp</label>
-                        <input type="text" class="form-control @error('notelp_user') is-invalid @enderror" name="notelp_user" value="{{ old('notelp_user') }}">
+                        {{-- <input type="text" class="form-control @error('notelp_user') is-invalid @enderror" name="notelp_user" value="{{ old('notelp_user') }}"> --}}
+                        <input type="tel" class="form-control @error('notelp_user') is-invalid @enderror" name="notelp_user" value="{{ old('notelp_user') }}" pattern="[0-9]*" maxlength="13">
                         @error('notelp_user')
                         <div class="invalid-feedback">Masukan no.telp anda!</div>
                         @enderror

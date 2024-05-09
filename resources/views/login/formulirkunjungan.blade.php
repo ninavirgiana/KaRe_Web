@@ -57,11 +57,12 @@
 
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile"
-                            class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Ninuu</span>
+                        {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile" --}}
+                        <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
+                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ $user->nama_user }}</span> --}}
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -219,10 +220,10 @@
                                     <div class="row mb-3">
                                         <label for="inputNumber" class="col-sm-2 col-form-label">Nomor Telepon</label>
                                         <div class="col-sm-10">
-                                            <input type="number"
+                                            <input type="tel"
                                                 class="form-control @error('nomor_telepon') is-invalid @enderror"
                                                 name="nomor_telepon" value="{{ old('nomor_telepon') }}"
-                                                placeholder="Masukkan Nomor Telepon">
+                                                placeholder="Masukkan Nomor Telepon" pattern="[0-9]*" maxlength="13">
                                             @error('nomor_telepon')
                                                 <div class="invalid-feedback text-danger">
                                                     Nomor telepon harus diisi
@@ -237,7 +238,8 @@
                                         <div class="col-sm-10">
                                             <input type="date"
                                                 class="form-control @error('tanggal') is-invalid @enderror"
-                                                name="tanggal" value="{{ old('tanggal') }}">
+                                                name="tanggal" value="{{ old('tanggal') }}" min="{{ now()->toDateString() }}" >
+                                           
                                             @error('tanggal')
                                                 <div class="invalid-feedback text-danger">
                                                     Harap memilih tanggal kunjungan

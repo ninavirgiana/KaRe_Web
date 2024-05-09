@@ -14,25 +14,33 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 class TabunganController extends Controller
 {
     
-   
+
+
 public function index(Request $request)
 {
-    // Dapatkan ID pengguna yang sedang login
     $userId = Auth::id();
 
-    // Pastikan ID pengguna yang login ada
     if (!$userId) {
-        return abort(401); // Unauthorized jika pengguna tidak ada
+        return abort(401);
     }
 
-    // Ambil data tabungan berdasarkan ID pengguna yang sedang login
     $tabungan = Tabungan::where('id_user', $userId)
-        ->orderBy('created_at', 'asc') // Misalnya diurutkan berdasarkan tanggal pembuatan terbaru
-        ->simplePaginate(4); // Paginasi data
+        ->orderBy('created_at', 'asc');
 
-    // Tampilkan data tabungan ke view
-    return view('login.tabungan', compact('tabungan'));
+    if ($request->get('search')) {
+        $tabungan->where('ketsampah_tabungan', 'LIKE', '%' . $request->get('search') . '%')
+        ->orWhere('tgl_tabungan', 'LIKE', '%' . $request->get('search') . '%');
+    }
+
+    $tabungan = $tabungan->paginate(4);
+
+    return view('login.tabungan', compact('tabungan', 'request'));
 }
 
+
+
+
+
+    
     
 }

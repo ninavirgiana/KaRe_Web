@@ -69,9 +69,13 @@ Route::get('/tentangkami', [TentangKamiController::class, 'index']) ->name('tent
 
 
 Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
-Route::get('/profil/edit', [ProfilController::class, 'edit'])->name('edit');
-Route::put('/profil/{id}', [ProfilController::class, 'update'])->name('update');
-Route::post('/profil', [ProfilController::class, 'store'])->name('store'); // Menambahkan rute untuk metode POST
+// Route::get('/profil/edit', [ProfilController::class, 'show'])->name('show');
+// Route::post('/profil', [ProfilController::class, 'store'])->name('store'); // Menambahkan rute untuk metode POST
+Route::post('/gantipassword', [ProfilController::class, 'gantipassword'])->name('gantipassword');
+
+Route::put('/profil/edit/{id}', [ProfilController::class, 'update'])->name('update.profile');
+
+
 
 
 
@@ -84,6 +88,14 @@ Route::get('/detailpengajuan', [DetailPengajuanController::class, 'index'])->nam
 Route::get('/tentangkami', [TentangKamiController::class, 'index']) ->name('tentangkami');
 
 Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
+// Route::get('/search', [TabunganController::class,'search'])->name('search');
+Route::post('/filter', [TabunganController::class,'filter'])->name('filter');
+
+// Route::get('/tabungan/search', [TabunganController::class, 'search'])->name('tabungan.search');
+
+// Route::get('/tabungan/search', [TabunganController::class,'search'])->name('tabungan.search');
+
+
 
 
 
@@ -98,7 +110,7 @@ Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
     Route::put('formulirkunjungan/{id}', [FormulirKunjunganController::class, 'update']) ->name('update');
     Route::get('/show', [FormulirKunjunganController::class, 'show'])->name('show');
     Route::get('formulirkunjungan/{id}/delete', [FormulirKunjunganController::class, 'destroy']) ->name('destroy');
-    Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
+    // Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
     
 
 Route::get('/cobaerror', [CobaErorController::class, 'index'])->name('index');
@@ -122,9 +134,11 @@ Route::post('/register', [AuthenticatedSessionController::class, 'register_post'
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth.user'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profil/edit/{id}', [ProfilController::class, 'update'])->name('update.profile');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/gantipassword', [ProfilController::class, 'gantipassword'])->name('gantipassword');
+
 
     Route::get('/berandalogin', [BerandaLoginController::class, 'index']) ->name('berandalogin');
     Route::get('/detailpengajuan', [DetailPengajuanController::class, 'index']) ->name('detailpengajuan');
@@ -137,10 +151,21 @@ Route::middleware(['auth.user'])->group(function () {
     Route::get('/show', [FormulirKunjunganController::class, 'show'])->name('show');
     Route::get('formulirkunjungan/{id}/delete', [FormulirKunjunganController::class, 'destroy']) ->name('destroy');
     Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
-    Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
-    Route::get('/profil/edit', [ProfilController::class, 'edit'])->name('edit');
-    Route::put('/profil/{id}', [ProfilController::class, 'update'])->name('update');
-    Route::post('/profil', [ProfilController::class, 'store'])->name('store'); // Menambahkan rute untuk metode POST
+    // Route::get('/search', [TabunganController::class,'search'])->name('search');
+    Route::post('/filter', [TabunganController::class,'filter'])->name('filter');
+
+    // Route::get('/tabungan/search', [TabunganController::class, 'search'])->name('tabungan.search');
+
+    // Route::get('/tabungan/search', [TabunganController::class,'search'])->name('tabungan.search');
+
+
+
+    // Route::put('/profil/{id}', [ProfilController::class, 'update'])->name('update.profile');
+    // Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
+    // Route::get('/profil/edit', [ProfilController::class, 'show'])->name('show');
+    // Route::post('/profil', [ProfilController::class, 'store'])->name('store'); // Menambahkan rute untuk metode POST
+    // Route::post('/changepassword', [ProfilController::class, 'changepassword'])->name('changepassword');
+
 
 
 });

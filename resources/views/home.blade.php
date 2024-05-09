@@ -125,7 +125,8 @@
                         <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
                             <div class="col-md-5">
                               <figure>
-                                <img src="{{ asset('Images/' . $item->foto_kegiatan) }}" class="img-fluid" alt="">
+                                {{-- <img src="{{ asset('Images/' . $item->foto_kegiatan) }}" class="img-fluid" alt=""> --}}
+                                <img width="370px" src="{{ url('/images/kegiatan/'.$item->foto_kegiatan) }}">
                               </figure>
                               
                             </div>
