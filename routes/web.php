@@ -135,6 +135,8 @@ Route::post('/register', [AuthenticatedSessionController::class, 'register_post'
 
 Route::middleware(['auth.user'])->group(function () {
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
+
     Route::put('/profil/edit/{id}', [ProfilController::class, 'update'])->name('update.profile');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/gantipassword', [ProfilController::class, 'gantipassword'])->name('gantipassword');

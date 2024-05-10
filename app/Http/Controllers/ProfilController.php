@@ -4,39 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use App\Http\Controllers\Hash;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Hash;
-
 use App\Models\User;
 
 class ProfilController extends Controller
 {
-    //
     public function index()
-{
-    $user = auth()->user(); // Mengambil data user yang sedang login
-
-    return view('login.profil', compact('user'));
-}
-    public function create()
     {
-        return view('login.profil');
-    }
-
-    
-    public function show($id)
-    {
-        // Mengambil data profil dari database berdasarkan ID
-        $user = User::findOrFail($id);
-        
-        // Mengirimkan data profil ke view untuk ditampilkan
+        $user = auth()->user(); // Mengambil data user yang sedang login
         return view('login.profil', compact('user'));
     }
-    
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('login.profil', compact('user'));
+    }
+
     public function update(Request $request, $id)
-{
-    try {
+    {
         $request->validate([
             'nama_user' => 'required',
             'notelp_user' => 'required',
@@ -59,14 +45,24 @@ class ProfilController extends Controller
             $user->foto_user = $nama_foto; 
         }
 
+        // Simpan perubahan profil ke dalam database
         $user->save();
 
-        return redirect()->route('login.profil')->with('success', 'Profil berhasil diperbarui.');
-    } catch (\Exception $e) {
+        return redirect()->route('profil', $user->id)->with('success', 'Profil berhasil diperbarui!');
+        try{
+    } catch (Exception $e) {
         return back()->withInput()->withErrors(['error' => 'Gagal memperbarui profil. Silakan coba lagi.']);
+    }}
+
+    
+
+    public function edit()
+    {
+        $user = auth()->user();
+        return view('login.profil', compact('user'));
     }
-}
-public function gantipassword(Request $request)
+
+    public function gantipassword(Request $request)
     {
         $request->validate([
             'passwordsekarang' => 'required',
@@ -77,24 +73,15 @@ public function gantipassword(Request $request)
         ], [
             'passwordbaru.regex' => 'Password baru tidak boleh mengandung spasi.',
         ]);
-        $user = Auth::User();
+        $user = Auth::user();
 
         if (Hash::check($request->passwordsekarang, $user->password_user)) {
-            $user->password_user = Hash::make($request->konfirmasipassword);
+            $user->password_user = Hash::make($request->passwordbaru);
             $user->save();
 
             return redirect()->back()->with('success', 'Password berhasil diperbarui');
         } else {
             return redirect()->back()->with('error', 'Password lama yang dimasukkan salah');
         }
-    }
+    }}
 
-
-    
-
-
-
-
-
-//     
-}
