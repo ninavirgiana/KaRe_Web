@@ -95,7 +95,7 @@
 
                                         <div class="col-12">
                                             <p class="small mb-0">
-                                                <a href="">Lupa kata sandi?</a>
+                                                <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
                                             </p>
                                         </div>
                                         <div class="col-12">{{-- <a href="{{ route('user.berandalogin') }}" class="btn btn-primary w-100">Masuk</a> --}}

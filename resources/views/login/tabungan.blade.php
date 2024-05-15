@@ -67,11 +67,10 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile" --}}
-                        <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle">
+                        <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}" class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
+
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
-                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ $user->nama_user }}</span> --}}
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -183,13 +182,14 @@
                                 <form action="{{ route('tabungan') }}" method="GET">
                                     <div class="input-group input-group-sm" style="width: 150px;">
                                         <input type="text" name="search" class="form-control float-right"
-                                            placeholder="Search" title="Enter search keyword" value="{{ $request->get('search') }}">
+                                            placeholder="Search" title="Enter search keyword"
+                                            value="{{ $request->get('search') }}">
                                         <button type="submit" title="Search">
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </div>
                             </div><!-- End Search Bar -->
-                            
+
                         </div>
 
 
@@ -207,7 +207,7 @@
                                     <th>Keterangan</th>
                                     <th>Harga</th>
                                 </tr>
-                                @php $no = 1; @endphp 
+                                @php $no = 1; @endphp
                                 @foreach ($tabungan as $item)
                                     {{-- <form method="POST" action="{{ route('tabungan', ['id' => $item->id]) }}"> --}}
                                     <tr>

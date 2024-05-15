@@ -20,6 +20,7 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -56,17 +57,16 @@
             <ul class="d-flex align-items-center">
 
                 <li class="nav-item dropdown pe-3">
-                    {{-- @foreach ($user as $item) --}}
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle">
-                        {{-- <img src="{{ url('foto_profil/' . $user->foto_user) }}" class="d-block w-100"
-                                        alt="Foto Profil Pengguna"> --}}
-                        
+
+
+                        <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}"
+                            class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
+
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
 
-                        {{-- @endforeach --}}
 
 
 
@@ -104,7 +104,7 @@
                                     </button>
                                 </form>
                             </li>
-                            
+
 
                         </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
@@ -177,7 +177,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
             </div>
             </div>
@@ -195,7 +195,7 @@
                             <div id='calendar'></div>
                         </div>
                     </div>
-                    <div class="modal fade" id="basicModal" tabindex="-1">
+                    <div class="modal fade" id="event_entry_modal" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered modal-sm-4">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -207,16 +207,16 @@
                                     <div class="row">
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <label for="nama">Nama Pengunjung</label>
-                                                <input type="text" class="form-control" id="nama"
-                                                    name="nama" readonly>
+                                                <label for="nama_kunjungan">Nama Pengunjung</label>
+                                                <input type="text" class="form-control" id="nama_kunjungan"
+                                                    name="nama_kunjungan" readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <label for="tujuan_kunjungan">Nama Instansi</label>
-                                                <input type="text" class="form-control" id="tujuan_kunjungan"
-                                                    name="tujuan_kunjungan" readonly>
+                                                <label for="namainstansi_kunjungan">Nama Instansi</label>
+                                                <input type="text" class="form-control" id="namainstansi_kunjungan"
+                                                    name="namainstansi_kunjungan" readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-10">
@@ -228,9 +228,9 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <label for="tanggal_kunjungan">Tanggal Kunjungan</label>
-                                                <input type="text" class="form-control" id="tanggal_kunjungan"
-                                                    name="tanggal_kunjungan" readonly>
+                                                <label for="tgl_kunjungan">Tanggal Kunjungan</label>
+                                                <input type="text" class="form-control" id="tgl_kunjungan"
+                                                    name="tgl_kunjungan" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -244,29 +244,49 @@
                     </div><!-- End Basic Modal-->
 
 
-                    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-                        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    <!-- JS for full calender -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+                    <!-- bootstrap css and js -->
+                    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> --}}
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            var calendarEl = document.getElementById('calendar');
+                        function display_events(dataKunjungan) {
+                            var Calenders = [];
+                            for (var i = 0; i < dataKunjungan.length; i++) {
+                                var kunjungan = dataKunjungan[i];
+                                Calenders.push({
+                                    // event_id: kunjungan.id, // Assuming you have these fields
+                                    nama_kunjungan: kunjungan.nama_kunjungan,
+                                    tujuan_kunjungan: kunjungan.tujuan_kunjungan,
+                                    namainstansi_kunjungan: kunjungan.namainstansi_kunjungan,
+                                    start: kunjungan.tgl_kunjungan,
+                                    end: kunjungan.tgl_kunjungan,
+                                    color: '#0000FF',
 
-                            var calendar = new FullCalendar.Calendar(calendarEl, {
-                                initialView: 'dayGridMonth',
-                                height: '400px',
-                                // width: '600px'
-                                aspectRatio: 2,
-                                dateClick: function(info) {
-                                    console.log(info);
-                                    $('#basicModal').modal('show')
-                                }
+                                });
+                            }
 
+                            var calendar = $('#calendar').fullCalendar({
+                                defaultView: 'month',
+                                timeZone: 'local',
+                                editable: true,
+                                selectable: true,
+                                selectHelper: true,
+                                eventClick: function(kunjungan) {
+                                    $('#nama_kunjungan').val(kunjungan.nama_kunjungan);
+                                    $('#tujuan_kunjungan').val(kunjungan.tujuan_kunjungan);
+                                    $('#namainstansi_kunjungan').val(kunjungan.namainstansi_kunjungan);
+                                    $('#tgl_kunjungan').val(moment(kunjungan.tgl_kunjungan).format('YYYY-MM-DD'));
+                                    // $('#tgl_kunjungan').val(moment(kunjungan.tgl_kunjungan).format('YYYY-MM-DD'));
+                                    $('#event_entry_modal').modal('show');
+                                },
+                                events: Calenders,
                             });
-
-                            calendar.render();
-                        });
+                        }
+                        display_events(<?php echo json_encode($dataKunjungan); ?>);
                     </script>
+
                 </div>
             </div>
             </section>
@@ -304,7 +324,6 @@
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
 
 </body>
 

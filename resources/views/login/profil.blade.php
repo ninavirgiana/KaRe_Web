@@ -64,13 +64,9 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile" --}}
-                        {{-- <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle"> --}}
-                        <img src="{{ url('foto_profil/' . $user->foto_user) }}" class="d-block w-100"
-                                        alt="Foto Profil Pengguna">
+                            <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}" class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
-                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ $user->nama_user }}</span> --}}
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -257,8 +253,12 @@
                                 <label for="phoneNumber" class="col-md-4 col-lg-3 col-form-label">Nomor
                                     Telepon</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="notelp_user" type="tel" class="form-control" id="phoneNumber"
-                                        value="{{ $user->notelp_user }}">
+                                    <input name="notelp_user" type="tel" class="form-control @error('notelp_user') is-invalid @enderror" id="phoneNumber" value="{{ $user->notelp_user }}" pattern="[0-9]*" maxlength="13">
+                                @error('notelp_user')
+                                <div class="invalid-feedback text-danger">
+                                    Nomor telepon 
+                                </div>
+                                @enderror
                                 </div>
                             </div>
 
@@ -292,12 +292,14 @@
 
 
                     <div class="tab-pane fade pt-3" id="profile-change-password">
-                        <form action="{{ route('gantipassword', ['id' => $user->id_user]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('gantipassword', ['id' => $user->id_user]) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf <!-- Token CSRF untuk keamanan -->
                             @method('POST')
 
                             <div class="row mb-3">
-                                <label for="passwordsekarang" class="col-md-4 col-lg-3 col-form-label">Kata Sandi Lama</label>
+                                <label for="passwordsekarang" class="col-md-4 col-lg-3 col-form-label">Kata Sandi
+                                    Lama</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="passwordsekarang" type="password" class="form-control"
                                         id="passwordsekarang">
@@ -305,14 +307,17 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="passwordbaru" class="col-md-4 col-lg-3 col-form-label">Kata Sandi Baru</label>
+                                <label for="passwordbaru" class="col-md-4 col-lg-3 col-form-label">Kata Sandi
+                                    Baru</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="passwordbaru" type="password" class="form-control" id="passwordbaru">
+                                    <input name="passwordbaru" type="password" class="form-control"
+                                        id="passwordbaru">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Konfirmasi Kata Sandi</label>
+                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Konfirmasi Kata
+                                    Sandi</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="konfirmasipassword" type="password" class="form-control"
                                         id="konfirmasipassword">

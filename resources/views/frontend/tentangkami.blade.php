@@ -40,10 +40,13 @@
                         <div class="col-lg-6 order-last order-lg-first">
                             <h3>Visi dan Misi</h3>
 
+                        <div>
                             <h3>Visi</h3>
                             <p class="custom-justify">
                                 "Kebersihan Kunci Keindahan Bersama"
                             </p>
+                        </div>
+
 
                             <h3>Misi</h3>
                             <ol class="misi-list">

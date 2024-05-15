@@ -120,4 +120,5 @@ public function update(Request $request, $id)
 
         return redirect()->back()->with('success', 'Data Berhasil Dihapus');
     }
+    
 }

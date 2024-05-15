@@ -27,6 +27,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\PembelianPupukController;
 use App\Http\Controllers\PenjemputanSampahController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+
+
 
 
 
@@ -98,6 +101,7 @@ Route::post('/filter', [TabunganController::class,'filter'])->name('filter');
 
 
 
+Route::get('/berandalogin', [BerandaLoginController::class, 'show']) ->name('show');
 
 
     Route::get('/berandalogin', [BerandaLoginController::class, 'index']) ->name('berandalogin');
@@ -129,6 +133,12 @@ Route::post('/login', [AuthenticatedSessionController::class, 'login'])->name('l
 Route::get('/register', [AuthenticatedSessionController::class, 'register'])->name('register');
 Route::post('/register', [AuthenticatedSessionController::class, 'register_post'])->name('register-post');
 
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('reset-password');
+    Route::post('/reset-password-post', [ForgotPasswordController::class, 'resetPasswordPost'])->name('reset-password-post');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -155,6 +165,8 @@ Route::middleware(['auth.user'])->group(function () {
     Route::get('/tabungan', [TabunganController::class, 'index'])->name('tabungan');
     // Route::get('/search', [TabunganController::class,'search'])->name('search');
     Route::post('/filter', [TabunganController::class,'filter'])->name('filter');
+    
+    
 
     // Route::get('/tabungan/search', [TabunganController::class, 'search'])->name('tabungan.search');
 
@@ -173,7 +185,7 @@ Route::middleware(['auth.user'])->group(function () {
 });
 Route::post('/logout',[AuthenticatedSessionController::class, 'logout'])->name('logout');
 
-Route::get('/forgot-password', function () {
-    return view('forgot-password');
-});
+// Route::get('/forgot-password', function () {
+//     return view('forgot-password');
+// });
 // require DIR.'/auth.php';

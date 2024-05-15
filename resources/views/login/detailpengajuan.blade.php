@@ -59,10 +59,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile" --}}
-                        <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
-                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ $user->nama_user }}</span> --}}
+
+                        <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}"
+                            class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
+
+                        <span class="d-none d-md-block dropdown-toggle ps-2"
+                            href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -178,23 +180,52 @@
                         </thead>
                         <tbody>
                             {{-- @foreach ($data as $item) --}}
-                            @php $no = 1; @endphp 
+                            @php $no = 1; @endphp
                             @foreach ($data as $item)
                                 <form method="POST" action="{{ route('formulirkunjungan', ['id' => $item->id]) }}">
                                     <tr>
                                         {{-- <td>{{ $item->id_kunjungan }}</td> --}}
-                                        <td>{{ $no++ }}</td> 
+                                        <td>{{ $no++ }}</td>
                                         <td>{{ $item->nama_kunjungan }}</td>
                                         {{-- <td>{{ $item->tgl_kunjungan }}</td> --}}
                                         <td>{{ date('d F Y', strtotime($item->tgl_kunjungan)) }}</td>
 
                                         <td>{{ $item->tujuan_kunjungan }}</td>
-                                        <td>{{ $item->status_kunjungan }}</td>
+                                        <td>
+                                            @if ($item->status_kunjungan == 'diajukan')
+                                                <button class="btn btn-warning disabled-button">diajukan</button>
+                                            @elseif($item->status_kunjungan == 'diterima')
+                                                <button class="btn btn-success disabled-button">diterima</button>
+                                            @elseif($item->status_kunjungan == 'ditolak')
+                                                <button class="btn btn-danger disabled-button">ditolak</button>
+                                            @endif
+                                            {{-- @elseif ($item->status_kunjungan == 'ditolak')
+                                                <button class="btn btn-danger disabled-button"
+                                                    data-id="{{ $item->id }}" data-toggle="modal"
+                                                    data-target="#modal-alasan-penolakan-{{ $item->id }}"
+                                                    title="Lihat Alasan Penolakan">
+                                                    <i class="fas fa-times"></i> ditolak
+                                                </button>
+                                                @include('modal-alasan-penolakan', ['item' => $item])
+                                            @endif --}}
+
+
+
+
+
+                                        </td>
+                                        {{-- <td>{{ $item->status_kunjungan }}</td> --}}
                                         <td>
                                             {{-- <a href="{{ url('formulirkunjungan/'.$item->id_kunjungan.'/edit') }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a> --}}
                                             {{-- <a href="{{ route('edit', ['id' => $item->id]) }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a> --}}
-                                            <a href="{{ url('formulirkunjungan/' . $item->id_kunjungan . '/edit') }}"
-                                                class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>
+
+                                            {{-- <a href="{{ url('formulirkunjungan/' . $item->id_kunjungan . '/edit') }}"
+                                                class="btn btn-success"><i class="bi bi-pencil-fill"></i></a> --}}
+                                            @if ($item->status_kunjungan != 'diterima')
+                                                <a href="{{ url('formulirkunjungan/' . $item->id_kunjungan . '/edit') }}"
+                                                    class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>
+                                            @endif
+
 
                                             {{-- <a href="{{ url('formulirkunjungan/'.$item->id.'/edit') }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a> --}}
                                             <a href="{{ url('formulirkunjungan/' . $item->id_kunjungan . '/delete') }}"

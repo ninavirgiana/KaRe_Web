@@ -21,7 +21,7 @@ class FormulirKunjungan extends Model
         'tujuan_kunjungan',
         'status_kunjungan',
         'jumlah_kunjungan',
-        // 'alasanstatus_kunjungan',
+        'alasanstatus_kunjungan',
         'id_user',
 
     ];

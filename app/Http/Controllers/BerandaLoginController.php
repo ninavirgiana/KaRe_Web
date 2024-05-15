@@ -3,34 +3,40 @@
 namespace App\Http\Controllers;
 // use App\Http\Controllers\Tabungan;
 use App\Models\Tabungan;
+use App\Models\FormulirKunjungan;
 use App\Models\User;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
+use App\Http\Controllers\FormulirKunjunganController;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
 
 class BerandaLoginController extends Controller
 {
-    //
-    public function index()
+    
+    
+
+    private function getDataKunjungan()
     {
-        // $user = User::find($id);
-        // $user = Auth::user();
-        // $user = User::findOrFail($id);
-
-
-        $tabungan = Tabungan::orderBy('id_tabungan', 'asc')->get();
-        return view('login.berandalogin', compact('tabungan'));
-
-        // return view('login.berandalogin');
+        return app()->make(FormulirKunjunganController::class)->getDataTanggaldiTerima(
+            null,
+            'get_kalender',
+            null,
+            ['nama_kunjungan', 'tujuan_kunjungan', 'namainstansi_kunjungan', 'tgl_kunjungan'],
+            ['nama_kunjungan', 'tujuan_kunjungan', 'namainstansi_kunjungan', 'tgl_kunjungan']
+        );
     }
 
-    // public function viewProfile(){
-    //     $user = User::find(auth()->user()->id); 
-    //     // $user = auth()->user(); // Mengambil data user yang sedang login
+    public function index()
+{
+    // Ambil data tabungan
+    $tabungan = Tabungan::orderBy('id_tabungan', 'asc')->get();
+    
+    // $dataKunjungan = FormulirKunjungan::getBookedDates('nama_kunjungan', 'tujuan_kunjungan', 'namainstansi_kunjungan', 'tgl_kunjungan');
+    $dataKunjungan = FormulirKunjungan::select('nama_kunjungan', 'tujuan_kunjungan', 'namainstansi_kunjungan', 'tgl_kunjungan')->where('status_kunjungan','diterima')->get();
+    // Gunakan $dataKunjungan untuk mengakses data kunjungan
+    return view('login.berandalogin', compact('tabungan', 'dataKunjungan'));
+}
 
-    //     return view('login.berandalogin', compact('user'));
 
-    // }
+
 }

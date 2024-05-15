@@ -59,10 +59,11 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        {{-- <img src="{{ asset('nice-admin/assets/img/profile-img.jpg') }}" alt="Profile" --}}
-                        <img src="assets/img/default-profile.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
-                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2" href="{{ route('profil') }}">{{ $user->nama_user }}</span> --}}
+                        
+                            <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}" class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
+
+                        <span class="d-none d-md-block dropdown-toggle ps-2"
+                            href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -238,8 +239,8 @@
                                         <div class="col-sm-10">
                                             <input type="date"
                                                 class="form-control @error('tanggal') is-invalid @enderror"
-                                                name="tanggal" value="{{ old('tanggal') }}" min="{{ now()->toDateString() }}" >
-                                           
+                                                name="tanggal" value="{{ old('tanggal') }}"
+                                                min="{{ now()->toDateString() }}">
                                             @error('tanggal')
                                                 <div class="invalid-feedback text-danger">
                                                     Harap memilih tanggal kunjungan
@@ -265,7 +266,7 @@
                                     </div>
 
 
-                                    <div class="row mb-3">
+                                    {{-- <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label">Kategori</label>
                                         <div class="col-sm-10">
                                             <select class="form-select" aria-label="Default select example"
@@ -274,7 +275,7 @@
                                                 <option value="Individu">Individu</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="row mb-3">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Jumlah Orang</label>
