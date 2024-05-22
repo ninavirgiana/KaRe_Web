@@ -99,9 +99,11 @@
                                             </p>
                                         </div>
                                         <div class="col-12">{{-- <a href="{{ route('user.berandalogin') }}" class="btn btn-primary w-100">Masuk</a> --}}
-
-                                            <button type="submit"
-                                                class="btn btn-primary w-100">Masuk</button>
+                                            <button type="submit" class="btn btn-success mb-2">
+                                                Masuk <span class="badge bg-white text-success"></span>
+                                            </button>
+                                            {{-- <button type="submit"
+                                                class="btn btn-primary w-100">Masuk</button> --}}
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Belum punya akun? <a

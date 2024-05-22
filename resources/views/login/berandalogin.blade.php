@@ -157,7 +157,7 @@
 
         <section class="section dashboard">
             <div class="row">
-                <div class="col-xxl-4 col-md-4">
+                <div class="col-xxl-6 col-md-6">
                     <div class="card info-card sales-card">
                         <div class="card-body">
                             <h5 class="card-title"><a href="">Tabungan</a></h5>
@@ -177,8 +177,22 @@
                     </div>
                 </div>
 
+                <div class="col-xxl-6 col-md-6">
+                    <div class="card info-card sales-card">
 
-            </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="">Sampah</a></h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-trash"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>{{ $totalBeratSampah }} Kg</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             </div>
         </section>
@@ -205,28 +219,29 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="nama_kunjungan">Nama Pengunjung</label>
                                                 <input type="text" class="form-control" id="nama_kunjungan"
                                                     name="nama_kunjungan" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="namainstansi_kunjungan">Nama Instansi</label>
-                                                <input type="text" class="form-control" id="namainstansi_kunjungan"
-                                                    name="namainstansi_kunjungan" readonly>
+                                                <input type="text" class="form-control"
+                                                    id="namainstansi_kunjungan" name="namainstansi_kunjungan"
+                                                    readonly>
                                             </div>
                                         </div>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="tujuan_kunjungan">Tujuan Kunjungan</label>
                                                 <input type="text" class="form-control" id="tujuan_kunjungan"
                                                     name="tujuan_kunjungan" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="tgl_kunjungan">Tanggal Kunjungan</label>
                                                 <input type="text" class="form-control" id="tgl_kunjungan"
@@ -262,7 +277,7 @@
                                     namainstansi_kunjungan: kunjungan.namainstansi_kunjungan,
                                     start: kunjungan.tgl_kunjungan,
                                     end: kunjungan.tgl_kunjungan,
-                                    color: '#0000FF',
+                                    color: '#FF0000',
 
                                 });
                             }
@@ -282,6 +297,8 @@
                                     $('#event_entry_modal').modal('show');
                                 },
                                 events: Calenders,
+                                height: 500, 
+
                             });
                         }
                         display_events(<?php echo json_encode($dataKunjungan); ?>);

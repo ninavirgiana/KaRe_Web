@@ -13,14 +13,10 @@
 
         <div class="section-header">
             <h2>PENJEMPUTAN SAMPAH</h2>
-
         </div>
-
         <section id="features" class="features">
             <div class="container">
-
                 <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-
                     <div class="col-md-5">
                         <img src="assets/img/kegiatan2.jpeg" class="img-fluid" alt="">
                     </div>
@@ -41,9 +37,5 @@
                         </a>
                     </div>
                 </div><!-- Features Item -->
-
-
-
-
         </section><!-- End Features Section -->
     @endsection

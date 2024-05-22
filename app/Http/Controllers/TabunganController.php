@@ -13,13 +13,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 class TabunganController extends Controller
 {
-    
-
-
 public function index(Request $request)
 {
     $userId = Auth::id();
-
     if (!$userId) {
         return abort(401);
     }

@@ -116,7 +116,10 @@
 
                     <div class="col-12">
                       <a href="{{ route('login')}}">
-                        <button class="btn btn-primary w-100 mt-3" type="submit">Buat akun</button>
+                        {{-- <button class="btn btn-primary w-100 mt-3" type="submit">Buat akun</button> --}}
+                        <button type="submit" class="btn btn-success mb-2">
+                          Buat Akun <span class="badge bg-white text-success"></span>
+                      </button>
                       </a>
                     </div>
                     <div class="col-12">

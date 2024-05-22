@@ -243,11 +243,33 @@
                                                 min="{{ now()->toDateString() }}">
                                             @error('tanggal')
                                                 <div class="invalid-feedback text-danger">
-                                                    Harap memilih tanggal kunjungan
+                                                    Tanggal kunjungan sudah dipesan, Harap memilih tanggal lain
                                                 </div>
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- <script>
+                                        document.addEventListener("DOMContentLoaded", function() {
+                                            // Ambil elemen input tanggal
+                                            var inputTanggal = document.querySelector('input[name="tgl_kunjungan"]');
+                                            // Ambil tanggal yang sudah memiliki status "diterima" dari server
+                                            var tanggalDiterima = {!! json_encode($tanggalDiterima) !!}; // Ubah ke dalam format yang sesuai dengan data tanggal
+                                    
+                                            // Tambahkan event listener untuk memeriksa tanggal setiap kali nilainya berubah
+                                            inputTanggal.addEventListener("change", function() {
+                                                // Ambil tanggal yang dipilih
+                                                var selectedDate = new Date(this.value);
+                                    
+                                                // Periksa apakah tanggal yang dipilih memiliki status "diterima"
+                                                if (tanggalDiterima.includes(this.value)) {
+                                                    // Jika memiliki status "diterima", kembalikan ke tanggal sebelumnya
+                                                    this.value = ''; // Kosongkan nilai input tanggal
+                                                    alert("Tanggal kunjungan yang sudah memiliki status 'diterima' tidak dapat dipilih.");
+                                                }
+                                            });
+                                        });
+                                    </script> --}}
+                                    
 
                                     <div class="row mb-3">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan

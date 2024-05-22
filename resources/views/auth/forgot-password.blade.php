@@ -100,8 +100,11 @@
                                         </div> -->
                                         <div class="col-12">{{-- <a href="{{ route('user.berandalogin') }}" class="btn btn-primary w-100">Masuk</a> --}}
 
-                                            <button type="submit"
-                                                class="btn btn-primary w-100">Kirim Email</button>
+                                            {{-- <button type="submit"
+                                                class="btn btn-primary w-100">Kirim Email</button> --}}
+                                                <button type="submit" class="btn btn-success mb-2">
+                                                    Kirim Email <span class="badge bg-white text-success"></span>
+                                                </button>
                                         </div>
                                         <!-- <div class="col-12">
                                             <p class="small mb-0">Belum punya akun? <a

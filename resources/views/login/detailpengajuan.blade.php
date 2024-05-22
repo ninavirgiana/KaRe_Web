@@ -153,12 +153,17 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-
-        <a href="{{ route('formulirkunjungan') }}" class="btn btn-lg btn-primary btn-lg w-10 mt-2 mb-2">
+        <a href="{{ route('formulirkunjungan') }}" class="btn btn-success mb-2">
             <i class="bi bi-plus-lg"></i>
             <span>Tambah</span>
-        </a>
-
+          </a>
+        {{-- <a href="{{ route('formulirkunjungan') }}" class="btn btn-succes">
+            <i class="bi bi-plus-lg" class="badge bg-white text-success"></i>
+            <span>Tambah</span>
+        </a> --}}
+        {{-- <button type="submit" class="btn btn-success mb-2">
+            Masuk <span class="badge bg-white text-success"></span>
+        </button> --}}
 
 
         <div class="col lg-6">

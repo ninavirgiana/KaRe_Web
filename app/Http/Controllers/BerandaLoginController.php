@@ -28,13 +28,23 @@ class BerandaLoginController extends Controller
 
     public function index()
 {
+    // $user = Auth::user();
+    $userId = Auth::id();
+    if (!$userId) {
+        return abort(401);
+    }
+
     // Ambil data tabungan
     $tabungan = Tabungan::orderBy('id_tabungan', 'asc')->get();
-    
-    // $dataKunjungan = FormulirKunjungan::getBookedDates('nama_kunjungan', 'tujuan_kunjungan', 'namainstansi_kunjungan', 'tgl_kunjungan');
+
+    // Menghitung total berat sampah untuk pengguna yang sedang masuk
+    $totalBeratSampah = Tabungan::where('id_user', $userId)
+                                ->sum('beratsampah_tabungan');
+
     $dataKunjungan = FormulirKunjungan::select('nama_kunjungan', 'tujuan_kunjungan', 'namainstansi_kunjungan', 'tgl_kunjungan')->where('status_kunjungan','diterima')->get();
     // Gunakan $dataKunjungan untuk mengakses data kunjungan
-    return view('login.berandalogin', compact('tabungan', 'dataKunjungan'));
+
+    return view('login.berandalogin', compact('tabungan', 'dataKunjungan', 'totalBeratSampah'));
 }
 
 

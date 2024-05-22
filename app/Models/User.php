@@ -63,7 +63,7 @@ class User extends Authenticatable
 // }
     public function kegiatan()
     {
-        return $this->hasOne(Kegiatan::class, 'id_user', 'id_user');
+        return $this->hasMany(Kegiatan::class, 'id_user', 'id_user');
     }
 
     public function produk()
@@ -76,7 +76,7 @@ class User extends Authenticatable
     }
     public function tabungan()
     {
-        return $this->hasOne(Tabungan::class, 'id_user', 'id_user');
+        return $this->hasMany(Tabungan::class, 'id_user', 'id_user');
     }
 
 }

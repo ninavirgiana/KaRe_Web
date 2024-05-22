@@ -59,7 +59,11 @@
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <nav id="navbar" class="navbar">
+            {{-- <nav id="header" class="header"> --}}
+                <nav id="navbar" class="navbar">
+
+
+                
                 <ul>
                     <li><a href="{{ route('home') }}" class="active">Beranda</a></li>
                     <li><a href="{{ route('tentangkami') }}" class="active">Tentang Kami</a></li>

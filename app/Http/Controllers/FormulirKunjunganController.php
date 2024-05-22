@@ -61,7 +61,21 @@ public function create()
                 'asal' => 'required|max:20|regex:/^[a-zA-Z\s]+$/',
                 'nama_instansi' => 'required|max:50|regex:/^[a-zA-Z\s]+$/',
                 'nomor_telepon' => 'required|numeric',
-                'tanggal' => 'required|date',
+                // 'tanggal' => 'required|date',
+                'tanggal' => [
+                    'required',
+                    'date',
+                    // Validasi untuk memastikan tanggal yang dipilih tidak memiliki status "diterima" oleh pengguna lain
+                    function ($attribute, $value, $fail) {
+                        $exists = FormulirKunjungan::where('tgl_kunjungan', $value)
+                                                    ->where('status_kunjungan', 'diterima')
+                                                    // ->where('id_user', '!=', auth()->id())
+                                                    ->exists();
+                        if ($exists) {
+                            $fail('Tanggal kunjungan yang dipilih sudah memiliki status "diterima".');
+                        }
+                    },
+                ],
                 'tujuan_kunjungan' => 'required|max:50|regex:/^[a-zA-Z\s\'\-]+$/',
                 'jumlah_orang' => 'required|integer',
 

@@ -1,7 +1,7 @@
 @extends('sidebar.main')
 @section('content')
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="hero d-flex align-items-center">
+    {{-- <section id="hero" class="hero d-flex align-items-center">
         <div class="container">
             <div class="row gy-4 d-flex justify-content-between">
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -11,8 +11,19 @@
             </div>
 
         </div>
-        </div>
+        </div> --}}
     </section><!-- End Hero Section -->
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="page-header d-flex align-items-center">
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <nav>
+
+        </div><!-- End Breadcrumbs -->
 
 
 
@@ -124,11 +135,11 @@
                     <form method="POST" action="{{ route('home', ['id' => $item->id]) }}">
                         <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
                             <div class="col-md-5">
-                              <figure>
-                                {{-- <img src="{{ asset('Images/' . $item->foto_kegiatan) }}" class="img-fluid" alt=""> --}}
-                                <img width="370px" src="{{ url('/images/kegiatan/'.$item->foto_kegiatan) }}">
-                              </figure>
-                              
+                                <figure>
+                                    {{-- <img src="{{ asset('Images/' . $item->foto_kegiatan) }}" class="img-fluid" alt=""> --}}
+                                    <img width="370px" src="{{ url('/images/kegiatan/' . $item->foto_kegiatan) }}">
+                                </figure>
+
                             </div>
                             <div class="col-md-7">
                                 <h3>{{ $item->nama_kegiatan }}</h3>

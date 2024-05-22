@@ -19,6 +19,8 @@ class Tabungan extends Model
         'tipe_tabungan',
         'hargasampah_tabungan',
         'saldoakhir_tabungan',
+        'id_user',
+
         
 
     ];

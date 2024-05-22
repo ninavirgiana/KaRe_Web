@@ -64,7 +64,8 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                            <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}" class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
+                        <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}"
+                            class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
                     </a><!-- End Profile Iamge Icon -->
@@ -185,9 +186,8 @@
                                     <img src="{{ url('foto_profil/default.jpg') }}" class="d-block w-100"
                                         alt="Default Foto Profil">
                                 @endif
-
                             </div>
-                            <div>
+                            
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
 
@@ -206,9 +206,7 @@
                                     <div class="col-lg-9 col-md-8">{{ $user->notelp_user }}</div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
 
                     <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                         <!-- start Profile Edit Form -->
@@ -253,12 +251,15 @@
                                 <label for="phoneNumber" class="col-md-4 col-lg-3 col-form-label">Nomor
                                     Telepon</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="notelp_user" type="tel" class="form-control @error('notelp_user') is-invalid @enderror" id="phoneNumber" value="{{ $user->notelp_user }}" pattern="[0-9]*" maxlength="13">
-                                @error('notelp_user')
-                                <div class="invalid-feedback text-danger">
-                                    Nomor telepon 
-                                </div>
-                                @enderror
+                                    <input name="notelp_user" type="tel"
+                                        class="form-control @error('notelp_user') is-invalid @enderror"
+                                        id="phoneNumber" value="{{ $user->notelp_user }}" pattern="[0-9]*"
+                                        maxlength="13">
+                                    @error('notelp_user')
+                                        <div class="invalid-feedback text-danger">
+                                            Nomor telepon
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -325,7 +326,10 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                <button type="submit" class="btn btn-success mb-2">
+                                    Simpan Perubahan <span class="badge bg-white text-success"></span>
+                                </button>
+                                {{-- <button type="submit" class="btn btn-primary">Simpan Perubahan</button> --}}
                             </div>
                         </form><!-- End Change Password Form -->
 

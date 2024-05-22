@@ -51,13 +51,7 @@
                 <span class="d-none d-lg-block">Kartoharjo Recycle</span>
             </a>
         </div><!-- End Logo -->
-        {{-- <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-    
-        </div><!-- End Search Bar --> --}}
+
 
 
         <nav class="header-nav ms-auto">
@@ -67,7 +61,8 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}" class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
+                        <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}"
+                            class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
 
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
@@ -75,8 +70,7 @@
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <!-- <h6>Kevin Anderson</h6>
-              <span>Web Designer</span> -->
+
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -104,12 +98,7 @@
                                 </button>
                             </form>
                         </li>
-                        {{-- <li>
-                            <a class="dropdown-item d-flex align-items-center" href="login">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Keluar</span>
-                            </a>
-                        </li> --}}
+
 
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
@@ -149,7 +138,6 @@
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
-
         <div class="pagetitle">
             <h1>Tabungan</h1>
             <nav>
@@ -157,7 +145,6 @@
                     {{-- <li class="breadcrumb-item"><a href="{{ route('tabungan', ['id_user' => Auth::user()->id]) }}">Tabungan</a></li> --}}
                     {{-- <li class="breadcrumb-item"><a href="{{ route('tabungan', ['id' => Auth::user()->id]) }}">Tabungan</a></li> --}}
                     <li class="breadcrumb-item"><a href="{{ route('tabungan') }}">Tabungan</a></li>
-
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -170,6 +157,8 @@
 
                             @foreach ($tabungan as $item)
                             @endforeach
+                            <div class="d-flex justify-content-between align-items-center">
+
                             @if ($tabungan->isNotEmpty())
                                 <h4>Total Tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4>
 
@@ -177,26 +166,23 @@
                             @else
                                 <h4>Belum ada tabungan</h4>
                             @endif
-                            <div class="search-bar">
-                                {{-- <form class="search-form d-flex align-items-center" method="POST" action="#"> --}}
-                                <form action="{{ route('tabungan') }}" method="GET">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="search" class="form-control float-right"
-                                            placeholder="Search" title="Enter search keyword"
-                                            value="{{ $request->get('search') }}">
-                                        <button type="submit" title="Search">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-                                    </div>
-                            </div><!-- End Search Bar -->
-
+                            {{-- <div class="container mt-3"> --}}
+                                <div class="search-bar">
+                                    <form action="{{ route('tabungan') }}" method="GET">
+                                        <div class="d-flex justify-content-end">
+                                            <div class="input-group input-group-sm" style="width: 200px;">
+                                                <input type="text" name="search" class="form-control" placeholder="Search" title="Enter search keyword" value="{{ $request->get('search') }}">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-outline-secondary" title="Search">
+                                                        <i class="bi bi-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- End Search Bar -->
+                           
                         </div>
-
-
-
-
-
-
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
@@ -219,7 +205,6 @@
                                         <td>{{ $item->hargasampah_tabungan }}</td>
                                     </tr>
                                 @endforeach
-
                                 {{-- </thead> --}}
                                 </tbody>
                         </table>
