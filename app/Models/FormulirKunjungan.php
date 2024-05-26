@@ -30,9 +30,9 @@ class FormulirKunjungan extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
-    // public static function getBookedDates()
-    // {
-    //     return FormulirKunjungan::where('status_kunjungan', 'diterima')->pluck('tgl_kunjungan')->toArray();
-    // }
+    public static function getBookedDates()
+    {
+        return FormulirKunjungan::where('status_kunjungan', 'diterima')->pluck('tgl_kunjungan')->toArray();
+    }
     
 }

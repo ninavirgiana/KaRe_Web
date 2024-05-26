@@ -42,33 +42,22 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
 </head>
 
 <body>
-
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-
-
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1>Kartoharjo Recycle</h1>
             </a>
-
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            {{-- <nav id="header" class="header"> --}}
-                <nav id="navbar" class="navbar">
-
-
-                
+            <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="{{ route('home') }}" class="active">Beranda</a></li>
                     <li><a href="{{ route('tentangkami') }}" class="active">Tentang Kami</a></li>
-                    <!-- <li><a href="services.html"></a></li> -->
-
                     <li class="dropdown"><a class="active"><span>Layanan</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
@@ -76,62 +65,34 @@
                             <li class="dropdown"><a href="{{ route('layanansampah') }}" class="active"><span>Layanan
                                         Sampah</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                 <ul>
-
                                     <li><a href="{{ route('penjemputansampah') }}">Penjemputan Sampah</a></li>
                                     <li><a href="{{ route('pembelianpupuk') }}">Pembelian Pupuk</a></li>
-
                                 </ul>
-
                             </li>
                             <li><a href="{{ route('layanantabungan') }}" class="active">Layanan Tabungan</a></li>
-                            <!-- <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li> -->
                         </ul>
                     <li><a href="{{ route('galeri') }}" class="active">Galeri</a></li>
                     </li>
                     <li><a href="{{ route('lokasi') }}" class="active">Lokasi</a></li>
-
                     <a class="login-blade" href="{{ route('login') }}">
                         <button type="submit" class="btn btn-success mb-2">
                             Masuk <span class="badge bg-white text-success"></span>
                         </button>
                     </a>
                     </li>
-
-
             </nav><!-- .navbar -->
-
         </div>
     </header><!-- End Header -->
     <!-- End Header -->
-
-
-
-
     @yield('content')
-
-
-    </div>
-
-
-
-
-    </div>
-
     </div>
     </div>
-
-
-
     </div>
-
+    </div>
+    </div>
 
     <head>
-        <!-- Add your head content here -->
     </head>
-
-
-
 
     <footer id="footer" class="footer">
         <div class="container">
@@ -142,7 +103,6 @@
                         {{-- <p>Designed by TechTonic</p> --}}
                     </div>
                 </div>
-
                 <div class="col-lg-5 col-md-10 d-flex justify-content-end">
                     <div class="logo d-flex align-items-center">
                         {{-- <span>TPST Kartoharjo</span> --}}
@@ -152,9 +112,6 @@
             </div>
         </div>
     </footer>
-
-
-
     <!-- Add your scripts and other body content here -->
 </body>
 

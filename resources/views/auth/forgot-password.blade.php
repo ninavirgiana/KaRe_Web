@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kartoharjo Recycle- Login</title>
+    <title>Kartoharjo Recycle | Login</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -41,16 +41,13 @@
 </head>
 
 <body>
-
     <main>
         <div class="container">
-
             <section
                 class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
                             <div class="d-flex justify-content-center py-4">
                                 <a href="{{ route('home') }}" class="logo d-flex align-items-center w-auto">
                                     <img src="{{ asset('assets/img/kare.png') }}" alt="">
@@ -59,59 +56,34 @@
                             </div><!-- End Logo -->
 
                             <div class="card mb-3">
-
                                 <div class="card-body">
-
                                     <div class="pt-0 pb-2">
-                                    <a href="{{ route('login')}}" class="bi bi-arrow-left" style="font-size: 25px"></a>
+                                        <a href="{{ route('login') }}" class="bi bi-arrow-left"
+                                            style="font-size: 25px"></a>
                                         <h5 class="card-title text-center pb-0 fs-4">Lupa Kata Sandi</h5>
                                         <p class="text-center small">Masukan email yang terdaftar</p>
                                     </div>
-
-
                                     <form action="{{ route('password.email') }}" method="post"
                                         class="row g-3 needs-validation" novalidate>
-
                                         {{-- <form action="{{ route('login') }}" method="post" class="row g-3 needs-validation" novalidate> --}}
                                         @csrf
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Email</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="email" class="form-control"
+                                                <input type="text" name="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
                                                     id="yourUsername" required>
-                                                <div class="invalid-feedback">Masukan email!</div>
+                                                @error('email')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
-                                        @error('email')
-                                            <small>{{ $message }}</small>
-                                        @enderror
-
-                                        <!-- <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Kata sandi</label>
-                                            <input type="password" name="password_user" class="form-control"
-                                                id="yourPassword" required>
-                                            <div class="invalid-feedback">Masukan kata sandi!</div>
-                                        </div> -->
-
-                                        <!-- <div class="col-12">
-                                            <p class="small mb-0">
-                                                <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
-                                            </p>
-                                        </div> -->
-                                        <div class="col-12">{{-- <a href="{{ route('user.berandalogin') }}" class="btn btn-primary w-100">Masuk</a> --}}
-
-                                            {{-- <button type="submit"
-                                                class="btn btn-primary w-100">Kirim Email</button> --}}
-                                                <button type="submit" class="btn btn-success mb-2">
-                                                    Kirim Email <span class="badge bg-white text-success"></span>
-                                                </button>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-success mb-2">
+                                                Kirim Email <span class="badge bg-white text-success"></span>
+                                            </button>
                                         </div>
-                                        <!-- <div class="col-12">
-                                            <p class="small mb-0">Belum punya akun? <a
-                                                    href="{{ route('register') }}">Buat akun</a></p>
-                                        </div> -->
                                     </form>
-
                                     @if (session('error'))
                                         <div class="text-danger text-center"
                                             style="margin-top: 30px; padding-top: 10px; ">
@@ -120,21 +92,19 @@
                                     @endif
                                 </div>
                             </div>
-
+                            <div class="copyright">
+                                &copy; Copyright <strong><span>TechTonic</span></strong>. All Rights Reserved
+                            </div>
                             <div class="credits">
                                 <!-- All the links in the footer should remain intact. -->
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </section>
-
         </div>
     </main><!-- End #main -->
 

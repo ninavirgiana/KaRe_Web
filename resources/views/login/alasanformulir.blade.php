@@ -44,14 +44,12 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
-
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="{{ asset('assets/img/kare.png') }}" alt="">
                 <span class="d-none d-lg-block">Kartoharjo Recycle</span>
             </a>
         </div><!-- End Logo -->
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
@@ -62,7 +60,6 @@
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
                     </a><!-- End Profile Iamge Icon -->
-
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                         </li>
@@ -120,7 +117,6 @@
         </nav><!-- End Icons Navigation -->
     </header><!-- End Header -->
 
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
@@ -155,7 +151,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('detailpengajuan') }}">Kunjungan</a></li>
-                    <li class="breadcrumb-item">Edit Pengajuan</li>
+                    <li class="breadcrumb-item">Riwayat Pengajuan</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -167,79 +163,76 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title" style="text-align: center;">Formulir Pengajuan Kunjungan</h5>
-                                <form action="{{ route('update', ['id' => $kunjungan->id_kunjungan]) }}"
-                                    method="POST" enctype="multipart/form-data">
+                                <!-- <form action="{{ route('update', ['id' => $kunjungan->id_kunjungan]) }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
-                                    @method('PUT')
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-2 col-form-label">Nama</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nama"
-                                                value="{{ $kunjungan->nama_kunjungan }}" readonly>
-                                        </div>
-                                    </div>
+                                    @method('PUT') -->
 
-                                    <div class="row mb-3">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Asal</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="asal"
-                                                value="{{ $kunjungan->alamat_kunjungan }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Nama Instansi</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nama_instansi"
-                                                value="{{ $kunjungan->namainstansi_kunjungan }}">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="inputNumber" class="col-sm-2 col-form-label">Nomor Telepon</label>
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control" name="nomor_telepon"
-                                                value="{{ $kunjungan->nohp_kunjungan }}" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="inputDate" class="col-sm-2 col-form-label">Tanggal</label>
-                                        <div class="col-sm-10">
-                                            <input type="date" class="form-control" name="tanggal"
-                                                value="{{ $kunjungan->tgl_kunjungan }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan
-                                            Kunjungan</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" style="height: 100px" name="tujuan_kunjungan"
-                                                value="{{ $kunjungan->tujuan_kunjungan }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Jumlah Orang</label>
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control" name="jumlah_orang"
-                                                value="{{ $kunjungan->jumlah_kunjungan }}">
-                                        </div>
-                                    </div>
+                                <div class="row mb-3">
+                                    <label for="text" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
-                                        <input type="hidden" name="id" value="{{ $kunjungan->id_kunjungan }}">
+                                        <input type="text" class="form-control" name="nama"
+                                            value="{{ $kunjungan->nama_kunjungan }}" readonly>
                                     </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-10">
-                                            <button type="submit" class="btn btn-success mb-2">
-                                                Perbarui Pengajuan <span class="badge bg-white text-success"></span>
-                                            </button>
-                                        </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="text" class="col-sm-2 col-form-label">Asal</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="asal"
+                                            value="{{ $kunjungan->alamat_kunjungan }}" readonly>
                                     </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="text" class="col-sm-2 col-form-label">Nama Instansi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nama_instansi"
+                                            value="{{ $kunjungan->namainstansi_kunjungan }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="number" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="nomor_telepon"
+                                            value="{{ $kunjungan->nohp_kunjungan }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="tanggal"
+                                            value="{{ $kunjungan->tgl_kunjungan }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="text" class="col-sm-2 col-form-label">Tujuan
+                                        Kunjungan</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" style="height: 100px" name="tujuan_kunjungan"
+                                            value="{{ $kunjungan->tujuan_kunjungan }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="number" class="col-sm-2 col-form-label">Jumlah Orang</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="jumlah_orang"
+                                            value="{{ $kunjungan->jumlah_kunjungan }}" readonly>
+                                    </div>
+                                </div>
+                                @if ($kunjungan->status_kunjungan == 'ditolak')
+                                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                        <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
+                                        <div>{{ $kunjungan->alasanstatus_kunjungan }}</div>
+                                    </div>
+                                @endif
+                                <div class="col-sm-10">
+                                    <input type="hidden" name="id" value="{{ $kunjungan->id_kunjungan }}">
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <a class="btn btn-success mb-2"
+                                            href="{{ route('detailpengajuan') }}">Kembali</a>
+                                    </div>
+                                </div>
                                 </form>
                             </div>
                         </div>
@@ -247,9 +240,6 @@
                 </div>
         </section>
     </main><!-- End #main -->
-
-
-
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">

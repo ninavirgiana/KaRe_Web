@@ -622,19 +622,31 @@ h6 {
   bottom: 0;
   width: 250px;
   z-index: 996;
-  transition: all 0.3s;
+  transition: transform 0.3s ease;
   padding: 20px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: #445D48;
+  transform: translateX(0);
 }
 
-@media (max-width: 1199px) {
-  .sidebar {
-    left: -300px;
-  }
+.sidebar-checkbox {
+  display: none;
+}
+
+.sidebar-checkbox:checked ~ .sidebar {
+  transform: translateX(-100%);
+}
+
+.sidebar-icon-label {
+  display: block;
+  position: fixed;
+  top: 60px;
+  left: 10px;
+  z-index: 997;
+  cursor: pointer;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -645,32 +657,6 @@ h6 {
 
 .sidebar::-webkit-scrollbar-thumb {
   background-color: #aab7cf;
-}
-
-@media (min-width: 1200px) {
-
-  #main,
-  #footer {
-    margin-left: 250px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .toggle-sidebar .sidebar {
-    left: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-
-  .toggle-sidebar #main,
-  .toggle-sidebar #footer {
-    margin-left: 0;
-  }
-
-  .toggle-sidebar .sidebar {
-    left: -300px;
-  }
 }
 
 .sidebar-nav {
@@ -756,7 +742,6 @@ h6 {
   color: #012970;
   transition: 0.3;
   padding: 10px 0 10px 40px;
-  transition: 0.3s;
 }
 
 .sidebar-nav .nav-content a i {
@@ -774,6 +759,113 @@ h6 {
 .sidebar-nav .nav-content a.active i {
   background-color: #1C300E;
 }
+
+/* Media Queries for Responsive Sidebar Width */
+
+/* Laptop Kecil */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .sidebar {
+    width: 200px;
+  }
+}
+
+/* Laptop Sedang */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .sidebar {
+    width: 220px;
+  }
+}
+
+/* Laptop Besar */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .sidebar {
+    width: 240px;
+  }
+}
+
+/* Laptop Sangat Besar */
+@media (min-width: 1440px) {
+  .sidebar {
+    width: 260px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 639px) {
+  .sidebar {
+    width: 80%; /* Adjust width for mobile devices */
+    transform: translateX(-100%);
+  }
+
+  .sidebar-checkbox:checked ~ .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar-icon-label {
+    left: 10px;
+    top: 10px;
+  }
+
+  /* Adjustments for smaller screens */
+  .sidebar-nav .nav-link {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .sidebar-nav .nav-content a {
+    font-size: 13px;
+    padding: 8px 0 8px 30px;
+  }
+}
+
+/* CSS untuk membuat checkbox tidak terlihat tetapi tetap berfungsi */
+.sidebar-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-icon-label {
+  display: block;
+  position: fixed;
+  top: 60px;
+  left: 10px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.sidebar-icon-label i {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-icon-label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Sesuaikan posisi ikon jika diperlukan */
+.sidebar-icon-label i {
+  position: relative;
+  z-index: 1;
+}
+
+/* Transformasi sidebar untuk mobile */
+.sidebar-checkbox:checked ~ .sidebar {
+  transform: translateX(0);
+}
+
 
 /*--------------------------------------------------------------
 # Dashboard

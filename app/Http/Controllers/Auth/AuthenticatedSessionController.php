@@ -73,40 +73,7 @@ class AuthenticatedSessionController extends Controller
         return view('auth.register');
     }
 
-    // public function register_post(Request $request) {
-    //     $request->validate([
-    //         'nama_user' => 'required',
-    //         'alamat_user' => 'required',
-    //         'email_user' => 'required|email|unique:user,email_user',
-    //         'notelp_user' => 'required',
-    //         'password_user' => 'required|min:6',
-    //     ]);
-
-    //     $data['nama_user'] = $request->nama_user;
-    //     $data['alamat_user'] = $request->alamat_user;
-    //     $data['email_user'] = $request->email_user;
-    //     $data['notelp_user'] = $request->notelp_user;
-    //     $data['password_user'] = Hash::make($request->password_user);
-
-
-    //     User::create($data);
-        
-
-    //     // $login = [
-    //     //     'email_user' => $request->email_user,
-    //     //     'password_user' => $request->password_user
-    //     // ];
-
-    //     if (Auth::attempt($data)) {
-    //         $request->session()->regenerate();
-
-    //         return redirect()->intended('/login');
-    //     } 
-        
-    //     return redirect()->back()->withInput($request->only('email_user'))->withErrors([
-    //         'login_failed' => 'Email atau password salah.',
-    //     ]);
-    // }
+    
     public function register_post(Request $request)
     {
         $customMessage = [
@@ -116,10 +83,12 @@ class AuthenticatedSessionController extends Controller
             'email_user.email'       => 'Email tidak valid',
             'email_user.unique'      => 'Email sudah terdaftar',
             'notelp_user.required'  => 'Nomor telepon tidak boleh kosong',
-            'password_user.required'=> 'Password tidak boleh kosong',
-            'password_user.min'     => 'Password harus minimal 6 karakter',
-            'confirpassword.required' => 'Konfirmasi password tidak boleh kosong',
-            'confirpassword.same'   => 'Konfirmasi password harus sama dengan password',
+            'password_user.required'=> 'Kata sandi tidak boleh kosong',
+            'password_user.min'     => 'Kata sandi harus minimal 6 karakter',
+            'password_user.regex'   => 'Kata sandi tidak boleh mengandung spasi',
+            'confirpassword.required' => 'Konfirmasi kata sandi tidak boleh kosong',
+            'confirpassword.same'   => 'Konfirmasi kata sandi harus sama dengan kata sandi',
+            'confirpassword.regex'   => 'Konfirmasi kata sandi tidak boleh mengandung spasi',
         ];
 
         // Validasi data
@@ -128,8 +97,8 @@ class AuthenticatedSessionController extends Controller
             'alamat_user' => 'required',
             'email_user' => 'required|email|unique:user,email_user',
             'notelp_user' => 'required',
-            'password_user' => 'required|min:6',
-            'confirpassword' => 'required|same:password_user',
+            'password_user' => 'required|min:6|regex:/^[a-zA-Z0-9\'\-]+$/',
+            'confirpassword' => 'required|same:password_user|regex:/^[a-zA-Z0-9\'\-]+$/',
         ], $customMessage);
 
         // Buat pengguna baru
@@ -139,6 +108,8 @@ class AuthenticatedSessionController extends Controller
         $user->email_user = $validated['email_user'];
         $user->notelp_user = $validated['notelp_user'];
         $user->password_user = Hash::make($validated['password_user']);
+        $user->foto_user = '';
+        $user->level_user = 'user';
         $user->save();
 
 

@@ -26,7 +26,6 @@ class EditFormulirController extends Controller
             'tanggal' => 'required',
             'tujuan_kunjungan' => 'required',
             'jumlah_orang' => 'required',
-            // Tambahkan aturan validasi sesuai dengan kebutuhan Anda
         ]);
 
         // Mengambil data yang diinput dari request

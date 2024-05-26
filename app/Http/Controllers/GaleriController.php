@@ -11,7 +11,7 @@ class GaleriController extends Controller
     
     public function index()
     {
-        $kegiatan = Kegiatan::orderBy('id_kegiatan', 'asc')->paginate(6);
+        $kegiatan = Kegiatan::orderBy('id_kegiatan', 'asc')->cursorPaginate(6);
         return view('frontend.galeri', compact('kegiatan'));
         
     }

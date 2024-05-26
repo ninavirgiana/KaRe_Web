@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FormulirKunjungan;
-// use App\Models\FormulirKunjungan;
-
 use App\Models\User;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-// use App\Http\Controllers\FormulirKunjungan;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +18,9 @@ class FormulirKunjunganController extends Controller
 
     public function index(Request $request)
 {
-    // Dapatkan ID pengguna yang sedang login
+    // ID pengguna yang sedang login
     $userId = Auth::id();
 
-    // Pastikan ID pengguna yang login ada
     if (!$userId) {
         return abort(401); 
     }
@@ -43,15 +39,10 @@ public function create()
 {
     // Mendapatkan data tanggal yang sudah dibooking
     $bookedDates = FormulirKunjungan::getBookedDates();
-
-    
     return view('login.formulirkunjungan', ['bookedDates' => $bookedDates]);
 }
 
-    // public function create()
-    // {
-    //     return view('login.formulirkunjungan');
-    // }
+    
 
     public function store(Request $request)
     {
@@ -91,9 +82,10 @@ public function create()
         $kunjungan->jumlah_kunjungan = $request->input('jumlah_orang');
         $kunjungan->id_user = auth()->user()->id_user;
         $kunjungan->save();
-        // Redirect pengguna setelah pengguna berhasil ditambahkan
+
         return redirect()->route('detailpengajuan')->with('success', 'Pengajuan Berhasil Dilakukan');
         }
+        
         public function edit($id)
 {
     $kunjungan = FormulirKunjungan::findOrFail($id);
@@ -125,7 +117,10 @@ public function update(Request $request, $id)
     return redirect()->route('detailpengajuan')->with('success', 'Data Berhasil Diedit');
 }
 
-
+public function alasan($id){
+        $kunjungan = FormulirKunjungan::findOrFail($id);
+        return view('login.alasanformulir', compact('kunjungan'));
+}
 
     public function destroy(int $id)
     {

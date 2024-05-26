@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kartoharjo Recycle | Daftar Akun</title>
+    <title>Kartoharjo Recycle- Register</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -42,82 +42,75 @@
 
   <main>
     <div class="container">
-
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
               <div class="d-flex justify-content-center py-4">
-                <a class="logo d-flex align-items-center w-auto">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="{{ asset('assets/img/kare.png')}}" alt="">
                   <span class="d-none d-lg-block">Kartoharjo Recycle</span>
                 </a>
               </div><!-- End Logo -->
-
               <div class="card mb-3">
-
                 <div class="card-body">
-                  
-
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Buat akun</h5>
                     <p class="text-center small">Buat akun baru dengan Email anda!</p>
                   </div>
-
                   <form action="{{ route('register-post') }}" method="post" class="row g-3 needs-validation" novalidate>
                   @csrf
                     <div class="col-12">
                       <label for="yourName" class="form-label">Nama Lengkap</label>
-                      <input type="text" class="form-control @error('nama_user') is-invalid @enderror" name="nama_user" value="{{ old('nama_user') }}">
-                      @error('nama_user')
-                      <div class="invalid-feedback">Masukan nama anda!</div>
+                      <input type="text" class="form-control @error('nama_user') is-invalid @enderror" 
+                      name="nama_user" value="{{ old('nama_user') }}" required>
+                      @error('nama_user') 
+                        <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
-
                     <div class="col-12">
                       <label for="yourName" class="form-label">Alamat</label>
-                      <input type="text" class="form-control @error('alamat_user') is-invalid @enderror" name="alamat_user" value="{{ old('alamat_user') }}">
-                      @error('alamat_user')
-                      <div class="invalid-feedback">Masukan alamat anda!</div>
+                      <input type="text" class="form-control @error('alamat_user') is-invalid @enderror" 
+                      name="alamat_user" value="{{ old('alamat_user') }}" required>
+                      @error('alamat_user') 
+                        <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
-
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Email</label>
-                      <input type="email" class="form-control @error('email_user') is-invalid @enderror" name="email_user" value="{{ old('email_user') }}">
-                      @error('email_user')
-                      <div class="invalid-feedback">Masukan alamat email yang valid!</div>
+                      <input type="email" class="form-control @error('email_user') is-invalid @enderror" 
+                      name="email_user" value="{{ old('email_user') }}" required>
+                      @error('email_user') 
+                        <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
-
                     <div class="col-12">
                       <label for="yournotelp" class="form-label">No.Telp</label>
-                        {{-- <input type="text" class="form-control @error('notelp_user') is-invalid @enderror" name="notelp_user" value="{{ old('notelp_user') }}"> --}}
-                        <input type="tel" class="form-control @error('notelp_user') is-invalid @enderror" name="notelp_user" value="{{ old('notelp_user') }}" pattern="[0-9]*" maxlength="13">
-                        @error('notelp_user')
-                        <div class="invalid-feedback">Masukan no.telp anda!</div>
-                        @enderror
+                      <input type="text" class="form-control @error('notelp_user') is-invalid @enderror" 
+                      name="notelp_user" value="{{ old('notelp_user') }}" pattern="[0-9]*" maxlength="13" required>
+                      @error('notelp_user') 
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                       </div>
-
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Kata sandi</label>
-                      <input type="password" class="form-control @error('password_user') is-invalid @enderror" name="password_user" value="{{ old('password_user') }}">
-                      @error('password_user')
-                      <div class="invalid-feedback">Masukan kata sandi!</div>
+                      <input type="password" class="form-control @error('password_user') is-invalid @enderror" 
+                      name="password_user" required>
+                      @error('password_user') 
+                        <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
-
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Konfirmasi kata sandi</label>
-                      <input type="password" name="confirpassword" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Masukan konfirmasi kata sandi!</div>
+                      <input type="password" class="form-control @error('confirpassword') is-invalid @enderror" 
+                      name="confirpassword" required>
+                      @error('confirpassword') 
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
-
                     <div class="col-12">
                       <a href="{{ route('login')}}">
-                        {{-- <button class="btn btn-primary w-100 mt-3" type="submit">Buat akun</button> --}}
-                        <button type="submit" class="btn btn-success mb-2">
+                        <button type="submit" class="btn btn-success w-100 mb-2">
                           Buat Akun <span class="badge bg-white text-success"></span>
                       </button>
                       </a>
@@ -126,7 +119,6 @@
                       <p class="small mb-0">Sudah punya akun? <a href="{{ route('login')}}">Masuk</a></p>
                     </div>
                   </form>
-
                 </div>
               </div>
               <div class="copyright">
@@ -137,17 +129,11 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
-                {{-- Designed by <a>TechTonic</a> --}}
-
               </div>
-
             </div>
           </div>
         </div>
-
       </section>
-
     </div>
   </main><!-- End #main -->
 

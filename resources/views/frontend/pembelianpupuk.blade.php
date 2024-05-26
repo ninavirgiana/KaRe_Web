@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
                     <div class="col-md-5">
-                        <img src="assets/img/kegiatan2.jpeg" class="img-fluid" alt="">
+                        <img src="assets/img/pembelianpupuk2.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-md-7">
                         <p class="fst-serif custom-justify">
@@ -61,21 +61,16 @@
                         @foreach ($produk as $item)
                             <form method="POST" action="{{ route('pembelianpupuk', ['id' => $item->id]) }}">
                                 <tr>
-                                    {{-- <td>{{ $item->id_produk }}</td> --}}
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $item->nama_produk }}</td>
                                     <td>{{ $item->deskripsi_produk }}</td>
                                     <td>{{ $item->harga_produk }}</td>
                                     <td>{{ $item->stok_produk }}</td>
-                                    <td><img width="150px" src="{{ url('/images/produk/'.$item->foto_produk) }}"></td>
-
-                                    {{-- <img width="100px" src="{{ url('/images/produk/'.$item->foto_produk) }}"> --}}
-                                    {{-- <td>{{ $item->foto_produk }}</td> --}}
+                                    <td><img width="150px" src="{{ url('/Images/Produk/' . $item->foto_produk) }}"></td>
                                 </tr>
                             </form>
                         @endforeach
                     </tbody>
                 </table>
-
         </section><!-- End Features Section -->
     @endsection

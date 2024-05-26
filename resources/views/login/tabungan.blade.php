@@ -44,7 +44,6 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
-
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="{{ asset('assets/img/kare.png') }}" alt="">
@@ -52,30 +51,22 @@
             </a>
         </div><!-- End Logo -->
 
-
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
                 <li class="nav-item dropdown pe-3">
-
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
                         <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}"
                             class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
-
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
                     </a><!-- End Profile Iamge Icon -->
-
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
                                 <i class="bi bi-person"></i>
@@ -85,10 +76,33 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
-
-
-
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('berandalogin') }}">
+                                <i class="bi bi-grid"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('detailpengajuan') }}">
+                                <i class="bi bi-people-fill"></i>
+                                <span>Kunjungan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('tabungan') }}">
+                                <i class="bi bi-wallet2"></i>
+                                <span>Tabungan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -98,21 +112,16 @@
                                 </button>
                             </form>
                         </li>
-
-
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
-
             </ul>
         </nav><!-- End Icons Navigation -->
-
     </header><!-- End Header -->
+
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('berandalogin') }}">
                     <i class="bi bi-grid"></i>
@@ -134,16 +143,14 @@
                 </a>
             </li><!-- End F.A.Q Page Nav -->
         </ul>
-
     </aside><!-- End Sidebar-->
+
 
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Tabungan</h1>
             <nav>
                 <ol class="breadcrumb">
-                    {{-- <li class="breadcrumb-item"><a href="{{ route('tabungan', ['id_user' => Auth::user()->id]) }}">Tabungan</a></li> --}}
-                    {{-- <li class="breadcrumb-item"><a href="{{ route('tabungan', ['id' => Auth::user()->id]) }}">Tabungan</a></li> --}}
                     <li class="breadcrumb-item"><a href="{{ route('tabungan') }}">Tabungan</a></li>
                 </ol>
             </nav>
@@ -154,26 +161,24 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
                             @foreach ($tabungan as $item)
                             @endforeach
                             <div class="d-flex justify-content-between align-items-center">
-
-                            @if ($tabungan->isNotEmpty())
-                                <h4>Total Tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4>
-
-                                {{-- <h4>Total tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4> --}}
-                            @else
-                                <h4>Belum ada tabungan</h4>
-                            @endif
-                            {{-- <div class="container mt-3"> --}}
+                                @if ($tabungan->isNotEmpty())
+                                    <h4>Total Tabungan : {{ $tabungan->last()->saldoakhir_tabungan }}</h4>
+                                @else
+                                    <h4>Belum ada tabungan</h4>
+                                @endif
                                 <div class="search-bar">
                                     <form action="{{ route('tabungan') }}" method="GET">
                                         <div class="d-flex justify-content-end">
                                             <div class="input-group input-group-sm" style="width: 200px;">
-                                                <input type="text" name="search" class="form-control" placeholder="Search" title="Enter search keyword" value="{{ $request->get('search') }}">
+                                                <input type="text" name="search" class="form-control"
+                                                    placeholder="Search" title="Enter search keyword"
+                                                    value="{{ $request->get('search') }}">
                                                 <div class="input-group-append">
-                                                    <button type="submit" class="btn btn-outline-secondary" title="Search">
+                                                    <button type="submit" class="btn btn-outline-secondary"
+                                                        title="Search">
                                                         <i class="bi bi-search"></i>
                                                     </button>
                                                 </div>
@@ -181,41 +186,34 @@
                                         </div>
                                     </form>
                                 </div><!-- End Search Bar -->
-                           
-                        </div>
-                        <!-- Table with stripped rows -->
-                        <table class="table datatable">
-                            <thead>
-                                <tr>
-                                    <th>Nomor</th>
-                                    <th>Tanggal</th>
-                                    <th>Berat Sampah</th>
-                                    <th>Keterangan</th>
-                                    <th>Harga</th>
-                                </tr>
-                                @php $no = 1; @endphp
-                                @foreach ($tabungan as $item)
-                                    {{-- <form method="POST" action="{{ route('tabungan', ['id' => $item->id]) }}"> --}}
+
+                            </div>
+                            <table class="table datatable">
+                                <thead>
                                     <tr>
-                                        <td>{{ $no++ }}</td>
-                                        {{-- <td>{{ date('d F Y', strtotime($item->tgl_tabungan)) }}</td> --}}
-                                        <td>{{ $item->tgl_tabungan }}</td>
-                                        <td>{{ $item->beratsampah_tabungan }}</td>
-                                        <td>{{ $item->ketsampah_tabungan }}</td>
-                                        <td>{{ $item->hargasampah_tabungan }}</td>
+                                        <th>Nomor</th>
+                                        <th>Tanggal</th>
+                                        <th>Berat Sampah</th>
+                                        <th>Keterangan</th>
+                                        <th>Harga</th>
                                     </tr>
-                                @endforeach
-                                {{-- </thead> --}}
-                                </tbody>
-                        </table>
-                        {{ $tabungan->links() }}
-
-                        <!-- End Table with stripped rows -->
-
+                                    @php $no = 1; @endphp
+                                    @foreach ($tabungan as $item)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->tgl_tabungan }}</td>
+                                            <td>{{ $item->beratsampah_tabungan }}</td>
+                                            <td>{{ $item->ketsampah_tabungan }}</td>
+                                            <td>{{ $item->hargasampah_tabungan }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                            </table>
+                            {{ $tabungan->links() }}
+                            <!-- End Table with stripped rows -->
+                        </div>
                     </div>
                 </div>
-
-            </div>
             </div>
         </section>
 

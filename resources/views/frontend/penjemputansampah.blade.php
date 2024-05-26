@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
                     <div class="col-md-5">
-                        <img src="assets/img/kegiatan2.jpeg" class="img-fluid" alt="">
+                        <img src="assets/img/jemputsampah.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-md-7">
                         <p class="fst-serif custom-justify">

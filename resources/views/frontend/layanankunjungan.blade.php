@@ -7,15 +7,15 @@
         </div>
     </div>
     </div><!-- End Breadcrumbs -->
+
     <div class="section-header">
         <h2>LAYANAN KUNJUNGAN</h2>
     </div>
-
     <section id="features" class="features">
         <div class="container">
             <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
                 <div class="col-md-5">
-                    <img src="assets/img/kegiatan2.jpeg" class="img-fluid" alt="">
+                    <img src="assets/img/berandakunjungan2.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7">
                     <p class="fst-serif custom-justify">
@@ -33,10 +33,9 @@
 
             <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
                 <div class="col-md-5 order-1 order-md-2">
-                    <img src="assets/img/kegiatan2.jpeg" class="img-fluid" alt="">
+                    <img src="assets/img/berandakunjungan2.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 order-2 order-md-1">
-                    <!-- <h3>Daur Ulang</h3> -->
                     <p class="fst-serif custom-justify">
                         Setelah mendapatkan konfirmasi, pengunjung dapat melakukan kunjungan sesuai jadwal yang telah
                         disepakati, dengan harapan mereka mematuhi pedoman dan aturan selama kunjungan berlangsung. Layanan

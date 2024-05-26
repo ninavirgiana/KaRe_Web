@@ -45,7 +45,6 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
-
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ route('berandalogin') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('assets/img/kare.png') }}" alt="">
@@ -55,32 +54,19 @@
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-
-
                         <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}"
                             class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
-
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
-
-
-
-
-
-
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li class="dropdown-header">
-                                <!-- <h6>Kevin Anderson</h6>
-              <span>Web Designer</span> -->
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
                                     <i class="bi bi-person"></i>
@@ -90,11 +76,34 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-
-
-
-
-
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('berandalogin') }}">
+                                    <i class="bi bi-grid"></i>
+                                    <span>Beranda</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="{{ route('detailpengajuan') }}">
+                                    <i class="bi bi-people-fill"></i>
+                                    <span>Kunjungan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('tabungan') }}">
+                                    <i class="bi bi-wallet2"></i>
+                                    <span>Tabungan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                     @csrf
@@ -104,21 +113,16 @@
                                     </button>
                                 </form>
                             </li>
-
-
                         </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
-
             </ul>
         </nav><!-- End Icons Navigation -->
-
     </header><!-- End Header -->
+
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('berandalogin') }}">
                     <i class="bi bi-grid"></i>
@@ -140,17 +144,15 @@
                 </a>
             </li><!-- End F.A.Q Page Nav -->
         </ul>
-
     </aside><!-- End Sidebar-->
 
-    <main id="main" class="main">
 
+    <main id="main" class="main">
         <div class="pagetitle">
             <h1>Beranda</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('berandalogin') }}">Beranda</a></li>
-
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -166,11 +168,7 @@
                                     <i class="bi bi-wallet2"></i>
                                 </div>
                                 <div class="ps-3">
-                                    @if ($tabungan->isNotEmpty())
-                                        <h6>Rp. {{ $tabungan->last()->saldoakhir_tabungan }}</h6>
-                                    @else
-                                        <h5 class="card-title">Belum ada tabungan</h5>
-                                    @endif
+                                    <h6>Rp. {{ $totalSaldoAkhir }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +177,6 @@
 
                 <div class="col-xxl-6 col-md-6">
                     <div class="card info-card sales-card">
-
                         <div class="card-body">
                             <h5 class="card-title"><a href="">Sampah</a></h5>
                             <div class="d-flex align-items-center">
@@ -271,7 +268,6 @@
                             for (var i = 0; i < dataKunjungan.length; i++) {
                                 var kunjungan = dataKunjungan[i];
                                 Calenders.push({
-                                    // event_id: kunjungan.id, // Assuming you have these fields
                                     nama_kunjungan: kunjungan.nama_kunjungan,
                                     tujuan_kunjungan: kunjungan.tujuan_kunjungan,
                                     namainstansi_kunjungan: kunjungan.namainstansi_kunjungan,
@@ -281,7 +277,6 @@
 
                                 });
                             }
-
                             var calendar = $('#calendar').fullCalendar({
                                 defaultView: 'month',
                                 timeZone: 'local',
@@ -293,17 +288,14 @@
                                     $('#tujuan_kunjungan').val(kunjungan.tujuan_kunjungan);
                                     $('#namainstansi_kunjungan').val(kunjungan.namainstansi_kunjungan);
                                     $('#tgl_kunjungan').val(moment(kunjungan.tgl_kunjungan).format('YYYY-MM-DD'));
-                                    // $('#tgl_kunjungan').val(moment(kunjungan.tgl_kunjungan).format('YYYY-MM-DD'));
                                     $('#event_entry_modal').modal('show');
                                 },
                                 events: Calenders,
-                                height: 500, 
-
+                                height: 500,
                             });
                         }
                         display_events(<?php echo json_encode($dataKunjungan); ?>);
                     </script>
-
                 </div>
             </div>
             </section>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kartoharjo Recycle</title>
+    <title>Kartoharjo Recycle | Kunjungan</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -44,7 +44,6 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
-
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="{{ asset('assets/img/kare.png') }}" alt="">
@@ -54,27 +53,21 @@
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
                 <li class="nav-item dropdown pe-3">
-
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ route('profil') }}"
                         data-bs-toggle="dropdown">
-                        
-                            <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}" class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
-
+                        <img src="{{ url('foto_profil/' . Auth::user()->foto_user) }}"
+                            class="d-block w-100 rounded-circle" alt="Foto Profil Pengguna">
                         <span class="d-none d-md-block dropdown-toggle ps-2"
                             href="{{ route('profil') }}">{{ Auth::user()->nama_user }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <!-- <h6>Kevin Anderson</h6>
-              <span>Web Designer</span> -->
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
                                 <i class="bi bi-person"></i>
@@ -84,10 +77,33 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
-
-
-
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('berandalogin') }}">
+                                <i class="bi bi-grid"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('detailpengajuan') }}">
+                                <i class="bi bi-people-fill"></i>
+                                <span>Kunjungan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('tabungan') }}">
+                                <i class="bi bi-wallet2"></i>
+                                <span>Tabungan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -97,26 +113,16 @@
                                 </button>
                             </form>
                         </li>
-                        {{-- <li>
-              <a class="dropdown-item d-flex align-items-center" href="login">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Keluar</span>
-              </a>
-          </li> --}}
-
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
-
             </ul>
         </nav><!-- End Icons Navigation -->
-
     </header><!-- End Header -->
+
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('berandalogin') }}">
                     <i class="bi bi-grid"></i>
@@ -138,24 +144,16 @@
                 </a>
             </li><!-- End F.A.Q Page Nav -->
         </ul>
-
-
-
-
         </ul>
-
     </aside><!-- End Sidebar-->
 
-    <main id="main" class="main">
 
+    <main id="main" class="main">
         <div class="pagetitle">
             <h1>Kunjungan</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <!-- <li class="breadcrumb-item"><a href="index.html">Beranda</a></li> -->
-                    <!-- <li class="breadcrumb-item">Layanan Kunjungan</li> -->
                     <li class="breadcrumb-item"><a href="{{ route('detailpengajuan') }}">Kunjungan</a></li>
-
                     <li class="breadcrumb-item">Formulir Pengajuan</li>
                 </ol>
             </nav>
@@ -165,14 +163,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title" style="text-align: center;">Formulir Pengajuan Kunjungan</h5>
-
                                 <!-- Elemen Formulir Umum -->
                                 <form method="POST" action="{{ route('store') }}">
-                                    @csrf <!-- Tambahkan token CSRF untuk keamanan -->
+                                    @csrf
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">Nama</label>
                                         <div class="col-sm-10">
@@ -233,7 +229,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="row mb-3">
                                         <label for="inputDate" class="col-sm-2 col-form-label">Tanggal</label>
                                         <div class="col-sm-10">
@@ -248,28 +243,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    {{-- <script>
-                                        document.addEventListener("DOMContentLoaded", function() {
-                                            // Ambil elemen input tanggal
-                                            var inputTanggal = document.querySelector('input[name="tgl_kunjungan"]');
-                                            // Ambil tanggal yang sudah memiliki status "diterima" dari server
-                                            var tanggalDiterima = {!! json_encode($tanggalDiterima) !!}; // Ubah ke dalam format yang sesuai dengan data tanggal
-                                    
-                                            // Tambahkan event listener untuk memeriksa tanggal setiap kali nilainya berubah
-                                            inputTanggal.addEventListener("change", function() {
-                                                // Ambil tanggal yang dipilih
-                                                var selectedDate = new Date(this.value);
-                                    
-                                                // Periksa apakah tanggal yang dipilih memiliki status "diterima"
-                                                if (tanggalDiterima.includes(this.value)) {
-                                                    // Jika memiliki status "diterima", kembalikan ke tanggal sebelumnya
-                                                    this.value = ''; // Kosongkan nilai input tanggal
-                                                    alert("Tanggal kunjungan yang sudah memiliki status 'diterima' tidak dapat dipilih.");
-                                                }
-                                            });
-                                        });
-                                    </script> --}}
-                                    
 
                                     <div class="row mb-3">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan
@@ -287,18 +260,6 @@
                                         </div>
                                     </div>
 
-
-                                    {{-- <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label">Kategori</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-select" aria-label="Default select example"
-                                                name="kategori">
-                                                <option value="Kelompok">Kelompok</option>
-                                                <option value="Individu">Individu</option>
-                                            </select>
-                                        </div>
-                                    </div> --}}
-
                                     <div class="row mb-3">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Jumlah Orang</label>
                                         <div class="col-sm-10">
@@ -313,9 +274,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    {{-- <div class="col-sm-10">
-                                        <input type="hidden" name="id" value="{{ $kunjungan->id_kunjungan }}">
-                                    </div> --}}
 
                                     <div class="row mb-3">
                                         <div class="col-sm-2"></div>
@@ -323,18 +281,14 @@
                                             <button type="submit" class="btn btn-success mb-2">
                                                 Kirim <span class="badge bg-white text-success"></span>
                                             </button>
-                                            <!-- <button type="submit" class="btn btn-primary">Kirim</button> -->
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
         </section>
-
     </main><!-- End #main -->
 
 

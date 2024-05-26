@@ -35,16 +35,26 @@ class BerandaLoginController extends Controller
     }
 
     // Ambil data tabungan
-    $tabungan = Tabungan::orderBy('id_tabungan', 'asc')->get();
+    $tabungan = Tabungan::where('id_user', $userId)->orderBy('id_tabungan', 'asc')->get();
+
+    $totalSaldoAkhir = $tabungan->isNotEmpty() ? $tabungan->last()->saldoakhir_tabungan : 0;
+
+    // $tabungan = Tabungan::orderBy('id_tabungan', 'asc')->get();
+    // if ($tabungan == 0) {
+    //     $tabungan = 0;
+    // }
 
     // Menghitung total berat sampah untuk pengguna yang sedang masuk
     $totalBeratSampah = Tabungan::where('id_user', $userId)
                                 ->sum('beratsampah_tabungan');
-
+if ($totalBeratSampah == 0) {
+    $totalBeratSampah = 0;
+}
+// Ambil data untuk pop up kalender kunjungan
     $dataKunjungan = FormulirKunjungan::select('nama_kunjungan', 'tujuan_kunjungan', 'namainstansi_kunjungan', 'tgl_kunjungan')->where('status_kunjungan','diterima')->get();
     // Gunakan $dataKunjungan untuk mengakses data kunjungan
 
-    return view('login.berandalogin', compact('tabungan', 'dataKunjungan', 'totalBeratSampah'));
+    return view('login.berandalogin', compact('tabungan', 'dataKunjungan', 'totalBeratSampah', 'totalSaldoAkhir'));
 }
 
 
